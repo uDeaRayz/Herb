@@ -40,7 +40,9 @@
                             <?php if($count == 6) break; ?>
                             <div class="col-lg-4 col-md-6 col-sm-6 ser-icon text-center my-3">
                                     <div class="grid-wthree-service">
-                                      <img src="{{ URL::asset($docters->image) }}" alt="news image" class="img-fluid">
+                                            @foreach ($docterImgArray as $image)
+                                      <img src="{{ URL::asset('image/docter/'.$image[0]) }}" alt="news image" class="img-fluid">
+                                      @endforeach
                                       <div class="ser-text-wthree mt-3">
                                         <h4>
                                           {{ $docters->name }}

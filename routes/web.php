@@ -16,10 +16,28 @@ use App\Spa;
 
 
 Route::get('/', function () {
-    $docter = Docter::all();
-        $herb = Herb::all();
-        $spa = Spa::all();
-        return view('welcome',compact('docter','herb','spa'));
+        $docter = Docter::inRandomOrder()->get();
+        $docterImg = DB::table('docter')
+            ->select('image')->get();
+        foreach ($docterImg as $fileString) {
+            // now we have one single file record
+            $docterImgArray = explode('|', $fileString);
+        }
+        $herb = Herb::inRandomOrder()->get();
+        $herbImg = DB::table('herb')
+            ->select('image')->get();
+        foreach ($herbImg as $fileString) {
+            // now we have one single file record
+            $herbImgArray = explode('|', $fileString);
+        }
+        $spa = Spa::inRandomOrder()->get();
+        $spaImg = DB::table('spa')
+            ->select('image')->get();
+        foreach ($spaImg as $fileString) {
+            // now we have one single file record
+            $spaImgArray = explode('|', $fileString);
+        }
+        return view('welcome',compact('docter','herb','spa','docterImgArray','herbImgArray','spaImgArray'));
 });
 
 

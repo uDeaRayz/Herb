@@ -99,7 +99,7 @@
                         </div>
                         <div class="col-lg-5">
                             <input type="file" class="form-control-file border"
-                                id="image" name="image" value="{{ $docter->image }}">
+                                id="image" name="image[]" value="{{ $docter->image }}">
                         </div>
                     </div>
                     <br>

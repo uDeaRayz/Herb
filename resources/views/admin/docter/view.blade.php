@@ -18,7 +18,7 @@
                         <div class="col-lg-5">
                                 @if (!$docter->image == null)
                                 @foreach ($imagesArray as $image)
-                                <img src="{{ asset('image/docter/'.$image) }}"style="height:250px; width:300px;"> <!-- multi image -->
+                                {{-- <img src="{{ asset('image/docter/'.$image) }}"style="height:250px; width:300px;"> <!-- multi image --> --}}
                                 <img src="{{ asset('image/docter/'.$image[0]) }}"style="height:250px; width:300px;"> <!-- Single image -->
                                 @endforeach
                                 @else

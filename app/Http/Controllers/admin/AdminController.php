@@ -21,9 +21,9 @@ class AdminController extends Controller
     public function docter()
     {
         $docter = DB::table('docter')
-        ->orderBy('docter.id', 'asc')
-        ->paginate(15);
-        return view('admin.docter.docter',compact('docter'));
+            ->orderBy('docter.id', 'asc')
+            ->paginate(15);
+        return view('admin.docter.docter', compact('docter'));
     }
     public function add_docter()
     {
@@ -32,7 +32,7 @@ class AdminController extends Controller
     public function add_docter_store(Request $request)
     {
 
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required',
             'history' => 'nullable',
             'disease' => 'nullable',
@@ -47,13 +47,13 @@ class AdminController extends Controller
             'image' => 'nullable',
         ]);
 
-        $images=array();
+        $images = array();
         if (!$request->image == null) {
-            if($files=$request->file('image')){
-                foreach($files as $file){
-                    $name=$file->getClientOriginalName();
-                    $file->move('image/docter',$name);
-                    $images[]=$name;
+            if ($files = $request->file('image')) {
+                foreach ($files as $file) {
+                    $name = $file->getClientOriginalName();
+                    $file->move('image/docter', $name);
+                    $images[] = $name;
                 }
             }
             // $path = $request->file('image')->store('public/image');
@@ -71,9 +71,9 @@ class AdminController extends Controller
                 'price' => $request['price'],
                 'worktime_start' => $request['worktime_start'],
                 'worktime_stop' => $request['worktime_stop'],
-                'image' => implode("|",$images),
+                'image' => implode("|", $images),
             ]);
-        }else {
+        } else {
             Docter::create([
                 'name' => $request['name'],
                 'history' => $request['history'],
@@ -89,17 +89,17 @@ class AdminController extends Controller
             ]);
         }
 
-        return redirect('admin/docter-dashboard')->with('add','เพิ่มข้อมูลหมอสำเร็จ');
+        return redirect('admin/docter-dashboard')->with('add', 'เพิ่มข้อมูลหมอสำเร็จ');
     }
     public function edit_docter($id)
     {
         $docter = DB::table('docter')
-        ->where('docter.id','=', $id)->first();
-        return view('admin.docter.edit' ,compact('docter'));
+            ->where('docter.id', '=', $id)->first();
+        return view('admin.docter.edit', compact('docter'));
     }
-    public function edit_docter_store(Request $request , $id)
+    public function edit_docter_store(Request $request, $id)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required',
             'history' => 'nullable',
             'disease' => 'nullable',
@@ -114,59 +114,67 @@ class AdminController extends Controller
             'image' => 'nullable',
         ]);
 
+        $images = array();
         if (!$request->image == null) {
-            $path = $request->file('image')->store('public/image');
-            $sub = str_replace("public","storage" , $path);
+            if ($files = $request->file('image')) {
+                foreach ($files as $file) {
+                    $name = $file->getClientOriginalName();
+                    $file->move('image/docter', $name);
+                    $images[] = $name;
+                }
+            }
+            // $path = $request->file('image')->store('public/image');
+            // $sub = str_replace("public", "storage", $path);
 
             DB::table('docter')
-            ->where('docter.id', $id)
-            ->update([
-                'name' => $request['name'],
-                'history' => $request['history'],
-                'disease' => $request['disease'],
-                'age' => $request['age'],
-                'address' => $request['address'],
-                'subdis' => $request['subdis'],
-                'district' => $request['district'],
-                'province' => $request['province'],
-                'price' => $request['price'],
-                'worktime_start' => $request['worktime_start'],
-                'worktime_stop' => $request['worktime_stop'],
-                'image' => $sub,
-            ]);
-        }else {
+                ->where('docter.id', $id)
+                ->update([
+                    'name' => $request['name'],
+                    'history' => $request['history'],
+                    'disease' => $request['disease'],
+                    'age' => $request['age'],
+                    'address' => $request['address'],
+                    'subdis' => $request['subdis'],
+                    'district' => $request['district'],
+                    'province' => $request['province'],
+                    'price' => $request['price'],
+                    'worktime_start' => $request['worktime_start'],
+                    'worktime_stop' => $request['worktime_stop'],
+                    'image' => implode("|", $images),
+                ]);
+        } else {
             DB::table('docter')
-            ->where('docter.id', $id)
-            ->update([
-                'name' => $request['name'],
-                'history' => $request['history'],
-                'disease' => $request['disease'],
-                'age' => $request['age'],
-                'address' => $request['address'],
-                'subdis' => $request['subdis'],
-                'district' => $request['district'],
-                'province' => $request['province'],
-                'price' => $request['price'],
-                'worktime_start' => $request['worktime_start'],
-                'worktime_stop' => $request['worktime_stop'],
-            ]);
+                ->where('docter.id', $id)
+                ->update([
+                    'name' => $request['name'],
+                    'history' => $request['history'],
+                    'disease' => $request['disease'],
+                    'age' => $request['age'],
+                    'address' => $request['address'],
+                    'subdis' => $request['subdis'],
+                    'district' => $request['district'],
+                    'province' => $request['province'],
+                    'price' => $request['price'],
+                    'worktime_start' => $request['worktime_start'],
+                    'worktime_stop' => $request['worktime_stop'],
+                ]);
         }
 
-        return redirect('admin/docter-dashboard')->with('update','แก้ไขข้อมูลสำเร็จ');
+        return redirect('admin/docter-dashboard')->with('update', 'แก้ไขข้อมูลสำเร็จ');
     }
     public function view_docter($id)
     {
         $docter = DB::table('docter')
-        ->where('docter.id', '=', $id)->first();
+            ->where('docter.id', '=', $id)->first();
         $images = DB::table('docter')
-        ->select('image')
-        ->where('docter.id', '=', $id)->first();
+            ->select('image')
+            ->where('docter.id', '=', $id)->first();
         foreach ($images as $fileString) {
             // now we have one single file record
-            $imagesArray = explode('|',$fileString);
-          }
+            $imagesArray = explode('|', $fileString);
+        }
 
-        return view('admin.docter.view' ,compact('docter', 'imagesArray'));
+        return view('admin.docter.view', compact('docter', 'imagesArray'));
     }
     public function delete_docter($id)
     {
@@ -179,9 +187,9 @@ class AdminController extends Controller
     public function spa()
     {
         $spa = DB::table('spa')
-        ->orderBy('spa.id', 'asc')
-        ->paginate(15);
-        return view('admin.spa.spa',compact('spa'));
+            ->orderBy('spa.id', 'asc')
+            ->paginate(15);
+        return view('admin.spa.spa', compact('spa'));
     }
     public function add_spa()
     {
@@ -189,7 +197,7 @@ class AdminController extends Controller
     }
     public function add_spa_store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required',
             'address' => 'required',
             'district' => 'required',
@@ -204,10 +212,15 @@ class AdminController extends Controller
         ]);
 
 
+        $images = array();
         if (!$request->image == null) {
-            $path = $request->file('image')->store('public/image');
-            $sub = str_replace("public","storage" , $path);
-
+            if ($files = $request->file('image')) {
+                foreach ($files as $file) {
+                    $name = $file->getClientOriginalName();
+                    $file->move('image/spa', $name);
+                    $images[] = $name;
+                }
+            }
             Spa::create([
                 'name' => $request['name'],
                 'address' => $request['address'],
@@ -219,9 +232,9 @@ class AdminController extends Controller
                 'price' => $request['price'],
                 'worktime_start' => $request['worktime_start'],
                 'worktime_stop' => $request['worktime_stop'],
-                'image' => $sub,
+                'image' => implode("|", $images),
             ]);
-        }else {
+        } else {
             Spa::create([
                 'name' => $request['name'],
                 'address' => $request['address'],
@@ -236,23 +249,30 @@ class AdminController extends Controller
             ]);
         }
 
-        return redirect('admin/spa-dashboard')->with('add','เพิ่มร้านสปาสำเร็จ');
+        return redirect('admin/spa-dashboard')->with('add', 'เพิ่มร้านสปาสำเร็จ');
     }
     public function view_spa($id)
     {
         $spa = DB::table('spa')
-        ->where('spa.id', '=', $id)->first();
-        return view('admin.spa.view' ,compact('spa'));
+            ->where('spa.id', '=', $id)->first();
+        $images = DB::table('spa')
+            ->select('image')
+            ->where('spa.id', '=', $id)->first();
+        foreach ($images as $fileString) {
+            // now we have one single file record
+            $imagesArray = explode('|', $fileString);
+        }
+        return view('admin.spa.view', compact('spa', 'imagesArray'));
     }
     public function edit_spa($id)
     {
         $spa = DB::table('spa')
-        ->where('spa.id','=', $id)->first();
-        return view('admin.spa.edit' ,compact('spa'));
+            ->where('spa.id', '=', $id)->first();
+        return view('admin.spa.edit', compact('spa'));
     }
-    public function edit_spa_store(Request $request , $id)
+    public function edit_spa_store(Request $request, $id)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required',
             'address' => 'required',
             'district' => 'required',
@@ -265,44 +285,49 @@ class AdminController extends Controller
             'worktime_stop' => 'nullable',
             'image' => 'nullable',
         ]);
+        $images = array();
         if (!$request->image == null) {
-            $path = $request->file('image')->store('public/image');
-            $sub = str_replace("public","storage" , $path);
-
+            if ($files = $request->file('image')) {
+                foreach ($files as $file) {
+                    $name = $file->getClientOriginalName();
+                    $file->move('image/spa', $name);
+                    $images[] = $name;
+                }
+            }
             DB::table('spa')
-            ->where('spa.id', $id)
-            ->update([
-                'name' => $request['name'],
-                'address' => $request['address'],
-                'district' => $request['district'],
-                'province' => $request['province'],
-                'zipcode' => $request['zipcode'],
-                'detail' => $request['detail'],
-                'phone' => $request['phone'],
-                'price' => $request['price'],
-                'worktime_start' => $request['worktime_start'],
-                'worktime_stop' => $request['worktime_stop'],
-                'image' => $sub,
-            ]);
-        }else {
+                ->where('spa.id', $id)
+                ->update([
+                    'name' => $request['name'],
+                    'address' => $request['address'],
+                    'district' => $request['district'],
+                    'province' => $request['province'],
+                    'zipcode' => $request['zipcode'],
+                    'detail' => $request['detail'],
+                    'phone' => $request['phone'],
+                    'price' => $request['price'],
+                    'worktime_start' => $request['worktime_start'],
+                    'worktime_stop' => $request['worktime_stop'],
+                    'image' => implode("|", $images),
+                ]);
+        } else {
             DB::table('spa')
-            ->where('spa.id', $id)
-            ->update([
-                'name' => $request['name'],
-                'address' => $request['address'],
-                'district' => $request['district'],
-                'province' => $request['province'],
-                'zipcode' => $request['zipcode'],
-                'detail' => $request['detail'],
-                'phone' => $request['phone'],
-                'price' => $request['price'],
-                'worktime_start' => $request['worktime_start'],
-                'worktime_stop' => $request['worktime_stop'],
-            ]);
+                ->where('spa.id', $id)
+                ->update([
+                    'name' => $request['name'],
+                    'address' => $request['address'],
+                    'district' => $request['district'],
+                    'province' => $request['province'],
+                    'zipcode' => $request['zipcode'],
+                    'detail' => $request['detail'],
+                    'phone' => $request['phone'],
+                    'price' => $request['price'],
+                    'worktime_start' => $request['worktime_start'],
+                    'worktime_stop' => $request['worktime_stop'],
+                ]);
         }
 
 
-        return redirect('admin/spa-dashboard')->with('update','แก้ไขข้อมูลสำเร็จ');
+        return redirect('admin/spa-dashboard')->with('update', 'แก้ไขข้อมูลสำเร็จ');
     }
     public function delete_spa($id)
     {
@@ -315,15 +340,22 @@ class AdminController extends Controller
     public function herb()
     {
         $herb = DB::table('herbs')
-        ->orderBy('herbs.id', 'asc')
-        ->paginate(15);
-        return view('admin.herb.herb',compact('herb'));
+            ->orderBy('herbs.id', 'asc')
+            ->paginate(15);
+        return view('admin.herb.herb', compact('herb'));
     }
     public function view_herb($id)
     {
         $herb = DB::table('herbs')
-        ->where('herbs.id', '=', $id)->first();
-        return view('admin.herb.view' ,compact('herb'));
+            ->where('herbs.id', '=', $id)->first();
+        $images = DB::table('spa')
+            ->select('image')
+            ->where('spa.id', '=', $id)->first();
+        foreach ($images as $fileString) {
+            // now we have one single file record
+            $imagesArray = explode('|', $fileString);
+        }
+        return view('admin.herb.view', compact('herb','imagesArray'));
     }
     public function add_herb()
     {
@@ -331,7 +363,7 @@ class AdminController extends Controller
     }
     public function add_herb_store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required',
             'detail' => 'required',
             'price' => 'required',
@@ -340,18 +372,23 @@ class AdminController extends Controller
         ]);
 
 
+        $images = array();
         if (!$request->image == null) {
-            $path = $request->file('image')->store('public/image');
-            $sub = str_replace("public","storage" , $path);
-
+            if ($files = $request->file('image')) {
+                foreach ($files as $file) {
+                    $name = $file->getClientOriginalName();
+                    $file->move('image/spa', $name);
+                    $images[] = $name;
+                }
+            }
             $herb =  Herb::create([
                 'name' => $request['name'],
                 'detail' => $request['detail'],
                 'price' => $request['price'],
                 'stock' => $request['stock'],
-                'image' => $sub,
+                'image' => implode("|", $images),
             ]);
-        }else {
+        } else {
             $herb =  Herb::create([
                 'name' => $request['name'],
                 'detail' => $request['detail'],
@@ -360,50 +397,54 @@ class AdminController extends Controller
             ]);
         }
 
-        return redirect('admin/herb-dashboard')->with('add','เพิ่มสมุนไพรสำเร็จ');
+        return redirect('admin/herb-dashboard')->with('add', 'เพิ่มสมุนไพรสำเร็จ');
     }
-    public function edit_herb_store(Request $request , $id)
+    public function edit_herb_store(Request $request, $id)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required',
             'detail' => 'required',
             'price' => 'required',
             'stock' => 'required',
             'image' => 'nullable',
         ]);
-
+        $images = array();
         if (!$request->image == null) {
-            $path = $request->file('image')->store('public/image');
-            $sub = str_replace("public","storage" , $path);
-
+            if ($files = $request->file('image')) {
+                foreach ($files as $file) {
+                    $name = $file->getClientOriginalName();
+                    $file->move('image/spa', $name);
+                    $images[] = $name;
+                }
+            }
             DB::table('herbs')
-            ->where('herbs.id', $id)
-            ->update([
-                'name' => $request['name'],
-                'detail' => $request['detail'],
-                'price' => $request['price'],
-                'stock' => $request['stock'],
-                'image' => $sub,
-            ]);
-        }else {
+                ->where('herbs.id', $id)
+                ->update([
+                    'name' => $request['name'],
+                    'detail' => $request['detail'],
+                    'price' => $request['price'],
+                    'stock' => $request['stock'],
+                    'image' => implode("|", $images),
+                ]);
+        } else {
             DB::table('herbs')
-            ->where('herbs.id', $id)
-            ->update([
-                'name' => $request['name'],
-                'detail' => $request['detail'],
-                'price' => $request['price'],
-                'stock' => $request['stock'],
-            ]);
+                ->where('herbs.id', $id)
+                ->update([
+                    'name' => $request['name'],
+                    'detail' => $request['detail'],
+                    'price' => $request['price'],
+                    'stock' => $request['stock'],
+                ]);
         }
 
 
-        return redirect('admin/herb-dashboard')->with('update','แก้ไขข้อมูลสำเร็จ');
+        return redirect('admin/herb-dashboard')->with('update', 'แก้ไขข้อมูลสำเร็จ');
     }
     public function edit_herb($id)
     {
         $herb = DB::table('herbs')
-        ->where('herbs.id','=', $id)->first();
-        return view('admin.herb.edit' ,compact('herb'));
+            ->where('herbs.id', '=', $id)->first();
+        return view('admin.herb.edit', compact('herb'));
     }
     public function delete_herb($id)
     {
@@ -417,9 +458,9 @@ class AdminController extends Controller
     public function order()
     {
         $orders = DB::table('order')
-        ->orderBy('order.id', 'asc')
-        ->paginate(15);
-        $orders->transform(function($order, $key){
+            ->orderBy('order.id', 'asc')
+            ->paginate(15);
+        $orders->transform(function ($order, $key) {
             $order->cart = unserialize($order->cart);
             return $order;
         });
@@ -427,11 +468,11 @@ class AdminController extends Controller
     }
     public function view_order($id)
     {
-         $orders = DB::table('order')
-         ->join('users', 'order.user_id', '=', 'users.id')
+        $orders = DB::table('order')
+            ->join('users', 'order.user_id', '=', 'users.id')
             ->select('order.*', 'users.name')
-        ->where('order.id', '=', $id)->get();
-        $orders->transform(function($order, $key){
+            ->where('order.id', '=', $id)->get();
+        $orders->transform(function ($order, $key) {
             $order->cart = unserialize($order->cart);
             return $order;
         });
