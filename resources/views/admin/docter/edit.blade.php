@@ -25,11 +25,31 @@
                     <br>
                     <div class="row">
                         <div class="col-lg-4 text-right">
+                            <p style="color: #111; font-size: 13pt">อายุ<span style="color: red;">*</span></p>
+                        </div>
+                        <div class="col-lg-5">
+                            <input required pattern="[0-9]{5}" type="text" class="form-control" id="age"
+                                name="age" value="{{ $docter->age }}">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-4 text-right">
                             <p style="color: #111; font-size: 13pt">ที่อยู่</p>
                         </div>
                         <div class="col-lg-5">
                             <textarea class="form-control" rows="3" id="address"
                                 name="address">{{ $docter->address }}</textarea>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-4 text-right">
+                            <p style="color: #111; font-size: 13pt">ตำบล<span style="color: red;">*</span></p>
+                        </div>
+                        <div class="col-lg-5">
+                            <input required type="text" class="form-control" id="subdis"
+                                name="subdis" value="{{ $docter->subdis }}">
                         </div>
                     </div>
                     <br>
@@ -50,26 +70,6 @@
                         <div class="col-lg-5">
                             <input required type="text" class="form-control" id="province"
                                 name="province" value="{{ $docter->province }}">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">รหัสไปรษณีย์<span style="color: red;">*</span></p>
-                        </div>
-                        <div class="col-lg-5">
-                            <input required pattern="[0-9]{5}" type="text" class="form-control" id="zipcode"
-                                name="zipcode" value="{{ $docter->zipcode }}">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">เบอร์ติดต่อ</p>
-                        </div>
-                        <div class="col-lg-5">
-                            <input pattern="{0-9}" type="text" class="form-control" id="phone"
-                                name="phone" min="9" max="10" maxlength="10" value="{{ $docter->phone }}">
                         </div>
                     </div>
                     <br>

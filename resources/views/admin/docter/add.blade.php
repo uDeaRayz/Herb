@@ -12,134 +12,134 @@
             <div class="card-body">
                     <form action="{{ route('add-docter-store') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">ชื่อ-สกุล<span style="color: red;">*</span></p>
+                        <div class="row">
+                            <div class="col-lg-4 text-right">
+                                <p style="color: #111; font-size: 13pt">ชื่อ-สกุล</p>
+                            </div>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" id="name"
+                                    name="name" value="">
+                            </div>
                         </div>
-                        <div class="col-lg-5">
-                            <input type="text" class="form-control" id="name"
-                                name="name">
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 text-right">
+                                <p style="color: #111; font-size: 13pt">อายุ<span style="color: red;">*</span></p>
+                            </div>
+                            <div class="col-lg-5">
+                                <input required pattern="[0-9]{5}" type="text" class="form-control" id="age"
+                                    name="age" value="">
+                            </div>
                         </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">ที่อยู่<span style="color: red;">*</span></p>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 text-right">
+                                <p style="color: #111; font-size: 13pt">ที่อยู่</p>
+                            </div>
+                            <div class="col-lg-5">
+                                <textarea class="form-control" rows="3" id="address"
+                                    name="address"></textarea>
+                            </div>
                         </div>
-                        <div class="col-lg-5">
-                            <input required type="text" class="form-control" id="address"
-                                name="address">
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 text-right">
+                                <p style="color: #111; font-size: 13pt">ตำบล<span style="color: red;">*</span></p>
+                            </div>
+                            <div class="col-lg-5">
+                                <input required type="text" class="form-control" id="subdis"
+                                    name="subdis" value="">
+                            </div>
                         </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">อำเภอ<span style="color: red;">*</span></p>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 text-right">
+                                <p style="color: #111; font-size: 13pt">อำเภอ<span style="color: red;">*</span></p>
+                            </div>
+                            <div class="col-lg-5">
+                                <input required type="text" class="form-control" id="district"
+                                    name="district" value="">
+                            </div>
                         </div>
-                        <div class="col-lg-5">
-                            <input required type="text" class="form-control" id="district"
-                                name="district">
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 text-right">
+                                <p style="color: #111; font-size: 13pt">จังหวัด<span style="color: red;">*</span></p>
+                            </div>
+                            <div class="col-lg-5">
+                                <input required type="text" class="form-control" id="province"
+                                    name="province" value="">
+                            </div>
                         </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">จังหวัด<span style="color: red;">*</span></p>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 text-right">
+                                <p style="color: #111; font-size: 13pt">ข้อมูลหมอ</p>
+                            </div>
+                            <div class="col-lg-5">
+                                <textarea class="form-control" rows="3" id="history"
+                                    name="history"></textarea>
+                            </div>
                         </div>
-                        <div class="col-lg-5">
-                            <input required type="text" class="form-control" id="province"
-                                name="province">
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 text-right">
+                                <p style="color: #111; font-size: 13pt">โรคที่รักษา</p>
+                            </div>
+                            <div class="col-lg-5">
+                                <textarea class="form-control" rows="3" id="disease"
+                                    name="disease"></textarea>
+                            </div>
                         </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">รหัสไปรษณีย์<span style="color: red;">*</span></p>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 text-right">
+                                <p style="color: #111; font-size: 13pt">รูปภาพ</p>
+                            </div>
+                            <div class="col-lg-5">
+                                <input type="file" class="form-control-file border"
+                                    id="image" name="image">
+                            </div>
                         </div>
-                        <div class="col-lg-5">
-                            <input required pattern="[0-9]{5}" type="text" class="form-control" id="zipcode"
-                                name="zipcode">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">เบอร์ติดต่อ</p>
-                        </div>
-                        <div class="col-lg-5">
-                            <input pattern="{0-9}" type="text" class="form-control" id="phone"
-                                name="phone" min="9" max="10" maxlength="10">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">ข้อมูลหมอ</p>
-                        </div>
-                        <div class="col-lg-5">
-                            <textarea class="form-control" rows="3" id="history"
-                                name="history"></textarea>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">โรคที่รักษา</p>
-                        </div>
-                        <div class="col-lg-5">
-                            <textarea class="form-control" rows="3" id="disease"
-                                name="disease"></textarea>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">รูปภาพ</p>
-                        </div>
-                        <div class="col-lg-5">
-                            <input type="file" class="form-control-file border"
-                                id="image" name="image" multiple >
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">ค่าธรรมเนียม<span style="color: red;">*</span></p>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="row">
-                                <div class="col-4">
-                                    <input type="text" class="form-control"
-                                        id="price" name="price">
-                                </div>
-                                <div class="col-3">
-                                    <p style="color: #111; font-size: 13pt">บาท</p>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 text-right">
+                                <p style="color: #111; font-size: 13pt">ค่าธรรมเนียม</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <input type="text" class="form-control"
+                                            id="price" name="price">
+                                    </div>
+                                    <div class="col-3">
+                                        <p style="color: #111; font-size: 13pt">บาท</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">เวลาทำการ<span style="color: red;">*</span></p>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="row">
-                                <div class="col-3">
-                                    <input type="text" class="form-control"
-                                        id="worktime_start" name="worktime_start">
-                                </div>
-                                <div class="col-1">
-                                    -
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" class="form-control"
-                                        id="worktime_stop" name="worktime_stop">
-                                </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 text-right">
+                                <p style="color: #111; font-size: 13pt">เวลาทำการ</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <input type="text" class="form-control"
+                                            id="worktime_start" name="worktime_start">
+                                    </div>
+                                    <div class="col-1">
+                                        -
+                                    </div>
+                                    <div class="col-5">
+                                        <input type="text" class="form-control"
+                                            id="worktime_stop" name="worktime_stop">
+                                    </div>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <br><br>
                     <div class="text-center">
                         <button type="submit" class="btn btn-success">บันทึก</button>

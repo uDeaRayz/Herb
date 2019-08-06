@@ -16,13 +16,13 @@ class CreateDocterTable extends Migration
         Schema::create('docter', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->char('name', 100);
+            $table->char('age',10);
             $table->longText('history')->nullable();
             $table->longText('disease')->nullable();
             $table->string('address')->nullable();
+            $table->string('subdis')->nullable();
             $table->string('district')->nullable();
             $table->string('province')->nullable();
-            $table->string('zipcode')->nullable();
-            $table->char('phone',10)->nullable();
             $table->integer('price');
             $table->time('worktime_start');
             $table->time('worktime_stop');

@@ -33,7 +33,7 @@
                     <tr>
                         <th class="text-center" style="width: 5%">รหัส</th>
                         <th class="text-center" style="width: 20%">ชื่อ-สกุล</th>
-                        <th class="text-center" style="width: 10%">เบอร์โทร</th>
+                        <th class="text-center" style="width: 10%">อายุ</th>
                         <th class="text-center" style="width: 40%">ที่อยู่</th>
                         <th class="text-center" colspan="2" style="width: 15%">จัดการ</th>
                     </tr>
@@ -43,12 +43,9 @@
                     <tr>
                         <td>{{ $docters->id }}</td>
                         <td>{{ $docters->name }}</td>
-                        <td>{{ $docters->phone }}</td>
+                        <td>{{ $docters->age }}</td>
                         <td>
-                            {{ $docters->address }} &nbsp;&nbsp; ตำบล {{ $docters->district
-                            }}
-                            &nbsp;&nbsp; จังหวัด {{ $docters->province }} &nbsp;&nbsp;
-                            รหัสไปรษณีย์ {{ $docters->zipcode }}
+                            {{ $docters->address }} ตำบล {{ $docters->subdis }} อำเภอ {{ $docters->district }} จังหวัด {{ $docters->province }}
                         </td>
                         <td class="text-center">
                             <a href="{{ route('view-docter',$docters->id) }}"

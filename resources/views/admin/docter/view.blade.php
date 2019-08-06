@@ -39,10 +39,21 @@
                             <br>
                     <div class="row">
                         <div class="col-lg-4 text-right">
+                            <p class="detail-title">อายุ</p>
+                        </div>
+                        <div class="col-lg-5">
+                            <label for="">{{ $docter->age }}</label>
+                        </div>
+                    </div>
+                                                <br>
+                            <div class="hr-line-dashed"></div>
+                            <br>
+                    <div class="row">
+                        <div class="col-lg-4 text-right">
                             <p class="detail-title">ที่อยู่</p>
                         </div>
                         <div class="col-lg-5">
-                            <label for="">{{ $docter->address }} อำเภอ {{ $docter->district }} จังหวัด {{ $docter->province }}  รหัสไปรษณีย์ {{ $docter->zipcode }}</label>
+                            <label for="">{{ $docter->address }} ตำบล {{ $docter->subdis }} อำเภอ {{ $docter->district }} จังหวัด {{ $docter->province }}</label>
                         </div>
                     </div>
                                                 <br>
