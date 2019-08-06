@@ -47,9 +47,17 @@ class AdminController extends Controller
             'image' => 'nullable',
         ]);
 
+        $images=array();
         if (!$request->image == null) {
-            $path = $request->file('image')->store('public/image');
-            $sub = str_replace("public","storage" , $path);
+            if($files=$request->file('image')){
+                foreach($files as $file){
+                    $name=$file->getClientOriginalName();
+                    $file->move('image/docter',$name);
+                    $images[]=$name;
+                }
+            }
+            // $path = $request->file('image')->store('public/image');
+            // $sub = str_replace("public","storage" , $path);
 
             Docter::create([
                 'name' => $request['name'],
@@ -63,7 +71,7 @@ class AdminController extends Controller
                 'price' => $request['price'],
                 'worktime_start' => $request['worktime_start'],
                 'worktime_stop' => $request['worktime_stop'],
-                'image' => $sub,
+                'image' => implode("|",$images),
             ]);
         }else {
             Docter::create([
@@ -150,7 +158,15 @@ class AdminController extends Controller
     {
         $docter = DB::table('docter')
         ->where('docter.id', '=', $id)->first();
-        return view('admin.docter.view' ,compact('docter'));
+        $images = DB::table('docter')
+        ->select('image')
+        ->where('docter.id', '=', $id)->first();
+        foreach ($images as $fileString) {
+            // now we have one single file record
+            $imagesArray = explode('|',$fileString);
+          }
+
+        return view('admin.docter.view' ,compact('docter', 'imagesArray'));
     }
     public function delete_docter($id)
     {

@@ -98,7 +98,7 @@
                         </div>
                         <div class="col-lg-5">
                             <input type="file" class="form-control-file border"
-                                id="image" name="image" multiple >
+                                id="image" name="image[]" multiple >
                         </div>
                     </div>
                     <br>
