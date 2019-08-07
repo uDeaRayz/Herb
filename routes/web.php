@@ -17,27 +17,27 @@ use App\Spa;
 
 Route::get('/', function () {
         $docter = Docter::inRandomOrder()->get();
-        $docterImg = DB::table('docter')
-            ->select('image')->get();
-        foreach ($docterImg as $fileString) {
-            // now we have one single file record
-            $docterImgArray = explode('|', $fileString);
-        }
+        // $docterImg = DB::table('docter')
+        //     ->select('image')->get();
+        // foreach ($docterImg as $fileString) {
+        //     // now we have one single file record
+        //     $docterImgArray = explode('|', $fileString);
+        // }
         $herb = Herb::inRandomOrder()->get();
-        $herbImg = DB::table('herb')
-            ->select('image')->get();
-        foreach ($herbImg as $fileString) {
-            // now we have one single file record
-            $herbImgArray = explode('|', $fileString);
-        }
+        // $herbImg = DB::table('herb')
+        //     ->select('image')->get();
+        // foreach ($herbImg as $fileString) {
+        //     // now we have one single file record
+        //     $herbImgArray ;
+        // }
         $spa = Spa::inRandomOrder()->get();
-        $spaImg = DB::table('spa')
-            ->select('image')->get();
-        foreach ($spaImg as $fileString) {
-            // now we have one single file record
-            $spaImgArray = explode('|', $fileString);
-        }
-        return view('welcome',compact('docter','herb','spa','docterImgArray','herbImgArray','spaImgArray'));
+        // $spaImg = DB::table('spa')
+        //     ->select('image')->get();
+        // foreach ($spaImg as $fileString) {
+        //     // now we have one single file record
+        //     $spaImgArray = explode('|', $fileString);
+        // }
+        return view('welcome',compact('docter','herb','spa'));
 });
 
 

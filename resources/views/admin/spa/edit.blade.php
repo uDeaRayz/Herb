@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="col-lg-5">
                                     <input type="file" class="form-control-file border"
-                                        id="image" name="image" value="{{ $spa->image }}">
+                                        id="image[]" name="image[]" value="{{ $spa->image }}" multiple>
                                 </div>
                             </div>
                             <br>

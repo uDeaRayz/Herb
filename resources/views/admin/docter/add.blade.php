@@ -29,7 +29,7 @@
                                     style="color: red;">*</span></p>
                         </div>
                         <div class="col-lg-5">
-                            <input required pattern="[0-9]{5}" type="text"
+                            <input type="text"
                                 class="form-control" id="age"
                                 name="age" value="">
                         </div>

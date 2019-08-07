@@ -173,6 +173,7 @@ class AdminController extends Controller
             // now we have one single file record
             $imagesArray = explode('|', $fileString);
         }
+        dump($imagesArray);
 
         return view('admin.docter.view', compact('docter', 'imagesArray'));
     }
@@ -197,6 +198,7 @@ class AdminController extends Controller
     }
     public function add_spa_store(Request $request)
     {
+        dump($request);
         $this->validate($request, [
             'name' => 'required',
             'address' => 'required',
@@ -272,6 +274,7 @@ class AdminController extends Controller
     }
     public function edit_spa_store(Request $request, $id)
     {
+        // dump($request);
         $this->validate($request, [
             'name' => 'required',
             'address' => 'required',
