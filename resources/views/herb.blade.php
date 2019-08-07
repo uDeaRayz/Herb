@@ -2,7 +2,7 @@
 
 @section('content')
 <section style="margin-top: 45px">
-    <div class="container">
+        <div class="container-fluid" style="padding: 0 90px 0 90px;">
         <div class="row">
             <div class="col-lg-3">
                 <div>
@@ -14,7 +14,7 @@
             <div class="col-lg-9">
                 <div class="row">
                         @foreach ($herb as $herbs)
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="card" style="width:100%">
                             <img
                                 class="card-img-top"

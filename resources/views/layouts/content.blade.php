@@ -63,7 +63,7 @@
         <!--//stylesheets-->
     </head>
 
-    <body>
+    <body style="font-size: 15pt">
         <div id="app">
             <!-- //banner -->
             <div class="banner-content-porduct-custom" id="home">

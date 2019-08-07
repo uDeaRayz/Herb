@@ -2,7 +2,7 @@
 
 @section('content')
 <section style="margin-top: 45px">
-    <div class="container">
+<div class="container-fluid" style="padding: 0 90px 0 90px;">
         <div class="row">
             <div class="col-lg-3">
                 <div>
@@ -11,28 +11,28 @@
                     @include('layouts.left-menu-spa')
                 </div>
             </div>
+
             <div class="col-lg-9">
                 <div class="row">
-                    <div class="col-lg-4">
-                        <img
-                            class="card-img-top"
-                            src="{{
-                            URL::asset($spa->image) }}"
-                        alt="Card image"
-                        style="width:100%; height: 240px;"
-                        />
+                    <div class="col-lg-5">
+                        <img class="card-img-top" src="{{
+                                URL::asset('image/spa/'.$spaImgArray[0]) }}" alt="{{ $spa->name }}" style="width:100%; height: auto;" />
                     </div>
                     <div class="col-lg">
                         <div class="row">
-                            <div class="col-lg-4"><p class="detail-title">ชื่อ-สกุล</p></div>
-                            <div class="col-lg">{{ $spa->name }}</div>
+                            <div class="col-lg-5">
+                                <p class="detail-title">ชื่อร้าน</p>
+                            </div>
+                            <div class="col-lg-7">{{ $spa->name }}</div>
                         </div>
                         <br>
                         <div class="hr-line-dashed"></div>
                         <br>
                         <div class="row">
-                            <div class="col-lg-4"><p class="detail-title">ที่อยู่</p></div>
-                            <div class="col-lg">{{ $spa->address }} <br>
+                            <div class="col-lg-5">
+                                <p class="detail-title">ที่อยู่</p>
+                            </div>
+                            <div class="col-lg-7">{{ $spa->address }} <br>
                                 <b>อำเภอ</b> {{ $spa->district }} <br>
                                 <b>จังหวัด</b> {{ $spa->province }} <br>
                                 <b>รหัสไปรษณีย์</b> {{ $spa->zipcode }}
@@ -42,8 +42,10 @@
                         <div class="hr-line-dashed"></div>
                         <br>
                         <div class="row">
-                            <div class="col-lg-4"><p class="detail-title">ค่าบริการพื้นฐาน</p></div>
-                            <div class="col-lg">{{ $spa->price }} บาท
+                            <div class="col-5">
+                                <p class="detail-title">ค่าบริการพื้นฐาน</p>
+                            </div>
+                            <div class="col-7">{{ $spa->price }} บาท
                             </div>
                         </div>
                     </div>
@@ -52,8 +54,10 @@
                 <div class="hr-line-dashed"></div>
                 <br>
                 <div class="row">
-                    <div class="col-lg-3"><p class="detail-title">ข้อมูลการบริการ</p></div>
-                    <div class="col-lg">{{ $spa->detail }}</div>
+                    <div class="col-lg-3">
+                        <p class="detail-title">ข้อมูลการให้บริการ</p>
+                    </div>
+                    <div class="col-lg-9">{{ $spa->detail }}</div>
                 </div>
                 <br>
                 <div class="hr-line-dashed"></div>
@@ -61,23 +65,15 @@
                 <form>
                     <div class="row">
                         <div class="col-lg-3"><b>หมายเหตุ</b></div>
-                        <div class="col-lg">
+                        <div class="col-lg-9">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="d-flex">
                                         <div class="p-2"><label>วันที่</label></div>
-                                        <div class="p-2"><input
-                                                class="form-control"
-                                                type="date"
-                                                value="2011-08-19"
-                                                id="example-date-input"></div>
+                                        <div class="p-2"><input class="form-control" type="date" value="2011-08-19" id="example-date-input" style="font-size: 15pt;"></div>
                                         <div class="p-2"></div>
                                         <div class="p-2"><label>เวลา</label></div>
-                                        <div class="p-2"><input
-                                                class="form-control"
-                                                type="time"
-                                                value="13:45:00"
-                                                id="example-time-input"></div>
+                                        <div class="p-2"><input class="form-control" type="time" value="13:45:00" id="example-time-input" style="font-size: 15pt;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -88,30 +84,20 @@
                     <br>
                     <div class="row">
                         <div class="col-lg-3"></div>
-                        <div class="col-lg">
+                        <div class="col-lg-9">
 
                             <div class="d-flex">
                                 <div class="p-2"><b>จองครึ่งวัน</b></div>
                                 <div class="p-2">
                                     <div class="custom-control custom-radio">
-                                        <input type="radio"
-                                            class="custom-control-input"
-                                            id="morning" name="haftday"
-                                            value="customEx">
-                                        <label class="custom-control-label"
-                                            for="morning" style="padding-left:
-                                            30px;">ช่วงเช้า</label>
+                                        <input type="radio" class="custom-control-input" id="morning" name="haftday" value="customEx">
+                                        <label class="custom-control-label" for="morning" style="padding-left: 30px;">ช่วงเช้า</label>
                                     </div>
                                 </div>
                                 <div class="p-2">
                                     <div class="custom-control custom-radio">
-                                        <input type="radio"
-                                            class="custom-control-input"
-                                            id="afternoon" name="haftday"
-                                            value="customEx">
-                                        <label class="custom-control-label"
-                                            for="afternoon" style="padding-left:
-                                            30px;">
+                                        <input type="radio" class="custom-control-input" id="afternoon" name="haftday" value="customEx">
+                                        <label class="custom-control-label" for="afternoon" style="padding-left: 30px;">
                                             ช่วงบ่าย</label>
                                     </div>
                                 </div>
@@ -120,8 +106,8 @@
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-12 text-center">
-                            <button type="submit" class="btn btn-outline-success">จอง</button>
+                        <div class="col-lg-12  text-center">
+                            <button type="submit" class="btn btn-outline-success" style="font-size: 15pt; margin: 15px;">จองคิวร้านสปา</button>
                         </div>
                     </div>
                 </form>
@@ -129,8 +115,8 @@
                 <div class="hr-line-dashed"></div>
                 <br>
                 <div class="row">
-                    <div class="col-lg-3"><b>สถานะ</b></div>
-                    <div class="col-lg">
+                    <div class="col-3"><b>สถานะ</b></div>
+                    <div class="col-9">
                         <span style="color: red"> <b>มีการจองแล้ว</b></span>
                     </div>
                 </div>

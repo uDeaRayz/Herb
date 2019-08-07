@@ -28,7 +28,7 @@
                             <p style="color: #111; font-size: 13pt">อายุ<span style="color: red;">*</span></p>
                         </div>
                         <div class="col-lg-5">
-                            <input required pattern="[0-9]{5}" type="text" class="form-control" id="age"
+                            <input  type="text" class="form-control" id="age"
                                 name="age" value="{{ $docter->age }}">
                         </div>
                     </div>

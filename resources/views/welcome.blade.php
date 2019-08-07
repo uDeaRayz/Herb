@@ -5,7 +5,7 @@
         <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
           <h3 class="title text-center mb-2">เกี่ยวกับเรา</h3>
           <div class="title-w3ls-text text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">
-            <p>แพทย์แผนไทย ใกล้บ้านคุณ
+            <p style="font-size: 15pt;">แพทย์แผนไทย ใกล้บ้านคุณ
             </p>
           </div>
           <div class="row">
@@ -20,7 +20,7 @@
             <div class="col-lg-7 left-abut-txt ">
               <div class="about-right-grid">
                 <h2 class="mb-3">หาหมอพื้นบ้าน (Ha Mor Peun Ban)</h2>
-                <p>เว็บไซต์ “หาหมอพื้นบ้าน” ให้บริการทางด้านข้อมูลของหมอพื้นบ้าน ในพื้นที่ภาคใต้เพื่อเป็นประโยชน์แก่กลุ่มที่ ต้องการรักษาด้วยแพทย์ทางเลือก และ อนุรักษ์ตำรายาสมุนไพรไทย</p>
+                <p style="font-size: 15pt;">เว็บไซต์ “หาหมอพื้นบ้าน” ให้บริการทางด้านข้อมูลของหมอพื้นบ้าน ในพื้นที่ภาคใต้เพื่อเป็นประโยชน์แก่กลุ่มที่ ต้องการรักษาด้วยแพทย์ทางเลือก และ อนุรักษ์ตำรายาสมุนไพรไทย</p>
               </div>
             </div>
           </div>
@@ -32,7 +32,7 @@
                 <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
                   <h3 class="title text-center mb-2">หมอพื้นบ้าน</h3>
                   <div class="title-w3ls-text text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">
-                    <p>รักษาโรคแบบไทยๆ กับหมอพื้นบ้าน</p>
+                    <p style="font-size: 15pt;">รักษาโรคแบบไทยๆ กับหมอพื้นบ้าน</p>
                   </div>
                   <div class="row">
                         <?php $count = 0; ?>
@@ -40,14 +40,31 @@
                             <?php if($count == 6) break; ?>
                             <div class="col-lg-4 col-md-6 col-sm-6 ser-icon text-center my-3">
                                     <div class="grid-wthree-service">
-                                            @foreach ($docterImgArray as $image)
-                                      <img src="{{ URL::asset('image/docter/'.$image[0]) }}" alt="news image" class="img-fluid">
-                                      @endforeach
-                                      <div class="ser-text-wthree mt-3">
+                                            <?php
+                        $images = $docters->image;
+                            if ($images === "") {
+                            } else {
+                                $docterImgArray = explode('|', $images);
+                            }
+                                 ?>
+                                      <img src="{{ URL::asset('image/docter/'.$docterImgArray[0]) }}" style="width: 133px;
+                                      height: 128px;" alt="news image" class="img-fluid">
+                                      {{-- @endforeach --}}
+                                      <div class="ser-text-wthree mt-3 ellipsis">
                                         <h4>
                                           {{ $docters->name }}
                                         </h4>
-                                        <p class="mt-2">{{ $docters->history }}</p>
+                                        <p class="mt-2" style="display: -webkit-box;
+                                        max-width: 400px;
+                                        height: 88px;
+                                        -webkit-line-clamp: 3;
+                                        -webkit-box-orient: vertical;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        line-height: 1.625;
+                                        text-align: initial;
+                                        font-size: 14pt;
+                                        " title="{{ $docters->history }}">{{ $docters->history }}</p>
                                       </div>
                                     </div>
                                   </div>
@@ -63,7 +80,7 @@
           <div class="row">
             <div class="col-lg-7 store-details">
               <h4 class="mb-3">สมุนไพร</h4>
-              <h6 class="mb-2">สมุนไพรไทย รักษาโรคแบบออแกนิก</h6>
+              <h6 class="mb-2" style="font-size: 15pt; color: #111;">สมุนไพรไทย รักษาโรคแบบออแกนิก</h6>
           </div>
         </div>
       </section>
@@ -79,14 +96,21 @@
             <div class="col-lg-5 veg-list-text">
                     <?php $count = 0; ?>
                     @foreach ($herb as $herbs)
-                        <?php if($count == 3) break; ?>
+                        <?php if($count == 4) break; ?>
               <div class="row mb-2">
                 <div class="col-lg-7 col-md-7 col-sm-7 col-7 text-right py-lg-2 py-1 w3three-veg-org">
-                  <h6>{{ $herbs->price }} บาท</h6>
-                  <h5 class="my-2">{{ $herbs->name }}</h5>
+                  <h6 style="font-size: 13pt;">{{ $herbs->price }} บาท</h6>
+                  <h5 class="my-2" style="font-size:13pt">{{ $herbs->name }}</h5>
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-5 col-5 p-0">
-                  <img src="{{ URL::asset($herbs->image) }}" alt="news image" class="img-fluid">
+                        <?php
+                        $images = $herbs->image;
+                            if ($images === "") {
+                            } else {
+                                $herbImgArray = explode('|', $images);
+                            }
+                                 ?>
+                  <img src="{{ URL::asset('image/herb/'.$herbImgArray[0]) }}" alt="{{ $herbs->name }}" class="img-fluid" style="width:60%; height:auto; ">
                 </div>
               </div>
               <?php $count++; ?>
@@ -107,7 +131,14 @@
             <div class="col-lg-4 col-md-6 col-sm-6 gallery-img-grid my-3">
               <div class="gallery-grids">
                 <a href="#{{ $herbs->id }}">
-                  <img src="{{ URL::asset($herbs->image) }}" alt="news image" class="img-fluid">
+                        <?php
+                        $images = $herbs->image;
+                            if ($images === "") {
+                            } else {
+                                $herbImgArray = explode('|', $images);
+                            }
+                                 ?>
+                  <img  src="{{ URL::asset('image/herb/'.$herbImgArray[0]) }}" alt="{{ $herbs->name }}" class="img-fluid" style="width:100%; height:auto; ">
                 </a>
               </div>
             </div>
@@ -118,7 +149,14 @@
           @foreach ($herb as $herbs)
           <div id="{{ $herbs->id }}" class="popup-effect">
             <div class="popup">
-              <img src="{{ URL::asset($herbs->image) }}" alt="Popup Image" class="img-fluid">
+                    <?php
+                    $images = $herbs->image;
+                        if ($images === "") {
+                        } else {
+                            $herbImgArray = explode('|', $images);
+                        }
+                             ?>
+              <img src="{{ URL::asset('image/herb/'.$herbImgArray[0]) }}" alt="{{ $herbs->name }}" class="img-fluid">
               <a class="close" href="#gallery">×</a>
             </div>
           </div>
@@ -132,7 +170,7 @@
         <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
           <h3 class="title text-center mb-2">สปา</h3>
           <div class="title-w3ls-text text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">
-            <p>ร้านสปา ในรูปแบบการบริการแบบไทย</p>
+            <p style="font-size: 15pt;">ร้านสปา ในรูปแบบการบริการแบบไทย</p>
           </div>
           <div class="row">
               <?php $count = 0; ?>
@@ -140,8 +178,15 @@
                   <?php if($count == 3) break; ?>
             <div class="blog-wthree-color col-lg-4 position-relative my-3">
               <div class="w3ls-post-img">
-                <img src="{{ URL::asset($spas->image) }}" class="img-fluid" alt="">
-                <div class="blog-info">
+                  <?php
+            $images = $spas->image;
+                if ($images === "") {
+                } else {
+                    $spaImgArray = explode('|', $images);
+                }
+                     ?>
+                  <img src="{{ URL::asset('image/spa/'.$spaImgArray[0]) }}" class="img-fluid" alt=""  style="height: 233px !important; width: 355px;">
+                <div class="blog-info" style="width:120px">
                   <a href="#about">
                     <ul>
                       <li>{{ $spas->price }} ฿</li>
@@ -149,15 +194,22 @@
                   </a>
                 </div>
               </div>
-              <div class="blog-txt-info">
-                <h4 class="mb-2">
-                  <a href="#about">{{ $spas->name }}</a>
+              <div class="blog-txt-info ellipsis"  style="height:150px">
+                <h4 class="mb-2" style="display: -webkit-box;
+                max-width: 400px;
+                height: 70px;
+                -webkit-line-clamp: 2;
+                -moz-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                line-height: 1.625;
+                text-align: initial;">
+                  <a href="#about" style="font-size:15pt" title="{{ $spas->name }}">{{ $spas->name }}</a>
                 </h4>
-                <p>{{ $spas->detail }}</p>
                 <div class="news-date-list pt-2">
                   <ul>
                     <li class="mr-1">
-                      <a href="#">เวลาบริการ {{ $spas->worktime_start }} - {{ $spas->worktime_stop }}</a>
+                      <a href="#" style="font-size: 13pt;">เวลาบริการ {{ $spas->worktime_start }} - {{ $spas->worktime_stop }}</a>
                     </li>
                   </ul>
                 </div>

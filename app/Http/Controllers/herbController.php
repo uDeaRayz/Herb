@@ -17,7 +17,7 @@ class herbController extends Controller
     {
         $herb = DB::table('herbs')
         ->orderBy('herbs.id', 'asc')
-        ->paginate(9);
+        ->paginate(12);
         return view('herb',compact('herb'));
     }
 

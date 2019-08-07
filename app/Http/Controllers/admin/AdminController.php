@@ -173,7 +173,7 @@ class AdminController extends Controller
             // now we have one single file record
             $imagesArray = explode('|', $fileString);
         }
-        dump($imagesArray);
+        // dump($imagesArray);
 
         return view('admin.docter.view', compact('docter', 'imagesArray'));
     }
@@ -351,9 +351,10 @@ class AdminController extends Controller
     {
         $herb = DB::table('herbs')
             ->where('herbs.id', '=', $id)->first();
-        $images = DB::table('spa')
+        $images = DB::table('herbs')
             ->select('image')
-            ->where('spa.id', '=', $id)->first();
+            ->where('herbs.id', '=', $id)->first();
+        // dump($images);
         foreach ($images as $fileString) {
             // now we have one single file record
             $imagesArray = explode('|', $fileString);
@@ -380,7 +381,7 @@ class AdminController extends Controller
             if ($files = $request->file('image')) {
                 foreach ($files as $file) {
                     $name = $file->getClientOriginalName();
-                    $file->move('image/spa', $name);
+                    $file->move('image/herb', $name);
                     $images[] = $name;
                 }
             }
@@ -416,7 +417,7 @@ class AdminController extends Controller
             if ($files = $request->file('image')) {
                 foreach ($files as $file) {
                     $name = $file->getClientOriginalName();
-                    $file->move('image/spa', $name);
+                    $file->move('image/herb', $name);
                     $images[] = $name;
                 }
             }

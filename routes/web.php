@@ -21,23 +21,31 @@ Route::get('/', function () {
         //     ->select('image')->get();
         // foreach ($docterImg as $fileString) {
         //     // now we have one single file record
-        //     $docterImgArray = explode('|', $fileString);
+        //     // $docterImgArray = explode('|', $fileString);
         // }
+        // dd($docterImg);
         $herb = Herb::inRandomOrder()->get();
-        // $herbImg = DB::table('herb')
+        // $herbImg = DB::table('herbs')
         //     ->select('image')->get();
         // foreach ($herbImg as $fileString) {
         //     // now we have one single file record
-        //     $herbImgArray ;
+        //     // $herbImgArray = explode('|', $fileString);
         // }
+        // dd($herbImg);
         $spa = Spa::inRandomOrder()->get();
-        // $spaImg = DB::table('spa')
-        //     ->select('image')->get();
-        // foreach ($spaImg as $fileString) {
-        //     // now we have one single file record
-        //     $spaImgArray = explode('|', $fileString);
-        // }
-        return view('welcome',compact('docter','herb','spa'));
+            foreach ($spa as $value) {
+            $images = $value->image;
+                if ($images === "") {
+                    // dump(1);
+                } else {
+                    $spaImgArray = explode('|', $images);
+                }
+            }
+                        // foreach ($spaImgArray as $key => $item) {
+                        //     # code...
+                        //     dump($item);
+                        // }
+        return view('welcome',compact('docter','herb','spa','spaImgArray'));
 });
 
 

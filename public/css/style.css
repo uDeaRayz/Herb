@@ -1296,3 +1296,7 @@ h3.title {
     background-color: #f0ad4e;
     border-radius: 10px;
 }
+
+.sub-title-custom {
+    font-size: 15pt;
+}

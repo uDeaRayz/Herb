@@ -16,11 +16,17 @@
                                     <p class="detail-title">รูปภาพ</p>
                                 </div>
                                 <div class="col-lg-5">
-                                        @if (!$spa->image == null)
-                                        <img src="{{ asset($spa->image) }}"style="height:250px; width:300px;">
-                                        @else
-                                        <img src="{{ URL::asset('images/no_image.png') }}"style="height:250px; width:300px;">
-                                        @endif
+                                    <div class="row">
+                                            @if (!$spa->image == null)
+                                            {{-- @foreach ($imagesArray as $image) --}}
+                                        <div class="col-6">
+                                            <img src="{{ asset('image/spa/'.$imagesArray[0]) }}"style="height:250px; width:300px;"> <!-- Single image -->
+                                        </div>
+                                        {{-- @endforeach --}}
+                                    </div>
+                                    @else
+                                    <img src="{{ URL::asset('images/no_image.png') }}"style="height:250px; width:300px;">
+                                    @endif
                                 </div>
                             </div>
                             <br>

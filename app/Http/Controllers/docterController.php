@@ -17,7 +17,7 @@ class docterController extends Controller
     {
         $docter = DB::table('docter')
             ->orderBy('docter.id', 'asc')
-            ->paginate(15);
+            ->paginate(12);
         return view('docter', compact('docter'));
     }
 
@@ -52,7 +52,15 @@ class docterController extends Controller
     {
         $docter = DB::table('docter')
             ->where('docter.id', $id)->first();
-        return view('detail-docter', compact('docter'));
+        $img = DB::table('docter')
+            ->select('image')
+            ->where('docter.id', $id)->first();
+            if ($img !== "") {
+                foreach ($img as $fileString) {
+                    $docterImgArray = explode('|', $fileString);
+                }
+            }
+        return view('detail-docter', compact('docter','docterImgArray'));
     }
 
     /**
@@ -93,17 +101,17 @@ class docterController extends Controller
     {
         if ($type === 'province') {
             if ($name === 'all') {
-                $docter = DB::table('docter')->paginate(15);
+                $docter = DB::table('docter')->paginate(12);
             } else {
                 $docter = DB::table('docter')
-                ->where('docter.province', 'like','%'.$name.'%')->paginate(15);
+                ->where('docter.province', 'like','%'.$name.'%')->paginate(12);
             }
         } else if ($type === 'disease') {
             if ($name === 'all') {
-                $docter = DB::table('docter')->paginate(15);
+                $docter = DB::table('docter')->paginate(12);
             } else {
                 $docter = DB::table('docter')
-                ->where('docter.disease', 'like','%'.$name.'%')->paginate(15);
+                ->where('docter.disease', 'like','%'.$name.'%')->paginate(12);
             }
         }
         return view('docter', compact('docter'));

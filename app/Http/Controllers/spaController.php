@@ -17,7 +17,7 @@ class spaController extends Controller
     {
         $spa = DB::table('spa')
         ->orderBy('spa.id', 'asc')
-        ->paginate(15);
+        ->paginate(9);
         return view('spa',compact('spa'));
     }
 
@@ -52,7 +52,16 @@ class spaController extends Controller
     {
         $spa = DB::table('spa')
         ->where('spa.id', $id)->first();
-        return view('detail-spa' ,compact('spa'));
+
+        $img = DB::table('spa')
+            ->select('image')
+            ->where('spa.id', $id)->first();
+            if ($img !== "") {
+                foreach ($img as $fileString) {
+                    $spaImgArray = explode('|', $fileString);
+                }
+            }
+        return view('detail-spa' ,compact('spa','spaImgArray'));
     }
 
     /**
@@ -93,17 +102,17 @@ class spaController extends Controller
     {
         if ($type === 'district') {
             if ($name === 'all') {
-                $spa = DB::table('spa')->paginate(15);
+                $spa = DB::table('spa')->paginate(9);
             } else {
                 $spa = DB::table('spa')
-                ->where('spa.province', 'like','%'.$name.'%')->paginate(15);
+                ->where('spa.province', 'like','%'.$name.'%')->paginate(9);
             }
         } else if ($type === 'store') {
             if ($name === 'all') {
-                $spa = DB::table('spa')->paginate(15);
+                $spa = DB::table('spa')->paginate(9);
             } else {
                 $spa = DB::table('spa')
-                ->where('spa.disease', 'like','%'.$name.'%')->paginate(15);
+                ->where('spa.disease', 'like','%'.$name.'%')->paginate(9);
             }
         }
         return view('spa', compact('spa'));

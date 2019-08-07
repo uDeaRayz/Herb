@@ -2,7 +2,7 @@
 
 @section('content')
 <section style="margin-top: 45px">
-    <div class="container">
+        <div class="container-fluid" style="padding: 0 90px 0 90px;">
         <div class="row">
             <div class="col-lg-3">
                 <div>
@@ -13,36 +13,43 @@
             </div>
             <div class="col-lg-9">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-5">
                         <img
                             class="card-img-top"
                             src="{{
-                            URL::asset($docter->image) }}"
+                            URL::asset('image/docter/'.$docterImgArray[0]) }}"
                         alt="Card image"
-                        style="width:100%; height: 240px;"
+                        style="width:100%; height: auto;"
                         />
                     </div>
                     <div class="col-lg">
                         <div class="row">
-                            <div class="col-lg-4"><p class="detail-title">ชื่อ-สกุล</p></div>
+                            <div class="col-lg-5"><p class="detail-title">ชื่อ-สกุล</p></div>
                             <div class="col-lg">{{ $docter->name }}</div>
                         </div>
                         <br>
                         <div class="hr-line-dashed"></div>
                         <br>
                         <div class="row">
-                            <div class="col-lg-4"><p class="detail-title">ที่อยู่</p></div>
+                            <div class="col-lg-5"><p class="detail-title">อายุ</p></div>
+                            <div class="col-lg">{{ $docter->age }}</div>
+                        </div>
+                        <br>
+                        <div class="hr-line-dashed"></div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-5"><p class="detail-title">ที่อยู่</p></div>
                             <div class="col-lg">{{ $docter->address }} <br>
+                                <b>ตำบล</b> {{ $docter->subdis }} <br>
                                 <b>อำเภอ</b> {{ $docter->district }} <br>
                                 <b>จังหวัด</b> {{ $docter->province }} <br>
-                                <b>รหัสไปรษณีย์</b> {{ $docter->zipcode }}
                             </div>
                         </div>
                         <br>
                         <div class="hr-line-dashed"></div>
                         <br>
                         <div class="row">
-                            <div class="col-lg-4"><p class="detail-title">ค่าบริการพื้นฐาน</p></div>
+                            <div class="col-lg-5"><p class="detail-title">ค่าบริการพื้นฐาน</p></div>
                             <div class="col-lg">{{ $docter->price }} บาท
                             </div>
                         </div>
@@ -77,14 +84,14 @@
                                                 class="form-control"
                                                 type="date"
                                                 value="2011-08-19"
-                                                id="example-date-input"></div>
+                                                id="example-date-input" style="font-size: 15pt;"></div>
                                         <div class="p-2"></div>
                                         <div class="p-2"><label>เวลา</label></div>
                                         <div class="p-2"><input
                                                 class="form-control"
                                                 type="time"
                                                 value="13:45:00"
-                                                id="example-time-input"></div>
+                                                id="example-time-input" style="font-size: 15pt;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +133,7 @@
                     <br>
                     <div class="row">
                         <div class="col-12  text-center">
-                            <button type="submit" class="btn btn-outline-success">จอง</button>
+                            <button type="submit" class="btn btn-outline-success" style="font-size: 15pt; margin: 15px;">จองคิวคุณหมอ</button>
                         </div>
                     </div>
                 </form>
