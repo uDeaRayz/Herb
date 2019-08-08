@@ -1,14 +1,9 @@
 @extends('layouts.order-cart')
 
 @section('content')
-@if (Session::has('cart'))
+
 <section style="margin-top: 45px">
-        @if (session('add'))
-        <div class="alert alert-success">
-            <p class="text-success">{{ session('add') }}</p>
-        </div>
-        @endif
-        <form action="{{ route('order.payment') }}" method="post" enctype="multipart/form-data">
+        <form action="" method="post" enctype="multipart/form-data">
             @csrf
         <div class="container">
             <div class="card">
@@ -38,20 +33,17 @@
                     <div class="card">
                         <div class="card-header">รถเข็นของคุณ <span
                                 class="badge"></span></div>
-                        {{-- @foreach ($herb as $item) --}}
-                        {{-- {{ dd($item['price']) }} --}}
+
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-3 text-center">
-                                    {{-- <img
+                                    <img
                                         class="card-img-top"
-                                        src="{{
-                                        URL::asset($item['item']->image) }}"
-                                        alt="{{
-                                        $item['item']->name }}"
+                                        src=""
+                                        alt=""
                                         style="height: 15vh;
                                         width: 15vh;"
-                                        /> --}}
+                                        />
                                 </div>
                                 <div class="col-lg">
                                     <div class="row">
@@ -88,7 +80,7 @@
                                                             #111;"></span>
                                                         &nbsp;&nbsp;บาท</p>
                                                 </div>
-                                                <a href=""
+                                                <a href="{{ route('delete.item',$item['item']->id)}}"
                                                     class="btn
                                                     btn-outline-danger">ยกเลิก</a>
                                             </div>
@@ -96,7 +88,6 @@
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
-                                {{-- @endforeach --}}
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 bg-dark" style="padding:
@@ -119,8 +110,9 @@
                                         id="payment_type1" name="payment_type"
                                         value="1">
                                     <label class="custom-control-label pointer"
-                                        for="payment_type1" style="padding-left:
-                                        25px !important;">ชำระผ่าน ATM</label>
+                                        for="payment_type1" style="
+    padding-left: 50px !important;
+">ชำระผ่าน ATM</label>
                                 </div>
                                 <br>
                                 <div class="custom-control custom-radio">
@@ -129,8 +121,9 @@
                                         id="payment_type2" name="payment_type"
                                         value="2">
                                     <label class="custom-control-label pointer"
-                                        for="payment_type2" style="padding-left:
-                                        25px !important;">iBanking</label>
+                                        for="payment_type2" style="
+    padding-left: 50px !important;
+">iBanking</label>
                                 </div>
                                 <br>
                                 <div class="custom-control custom-radio">
@@ -139,8 +132,9 @@
                                         id="payment_type3" name="payment_type"
                                         value="3">
                                     <label class="custom-control-label pointer"
-                                        for="payment_type3" style="padding-left:
-                                        25px !important;">บัตรเครดิต/บัตรเดบิต</label>
+                                        for="payment_type3" style="
+    padding-left: 50px !important;
+">บัตรเครดิต/บัตรเดบิต</label>
                                 </div>
                                 <br>
                                 <div class="custom-control custom-radio">
@@ -149,8 +143,9 @@
                                         id="payment_type4" name="payment_type"
                                         value="4">
                                     <label class="custom-control-label pointer"
-                                        for="payment_type4" style="padding-left:
-                                        25px !important;">โอน/ชำระผ่านช่องทางธนาคาร</label>
+                                        for="payment_type4" style="
+    padding-left: 50px !important;
+">โอน/ชำระผ่านช่องทางธนาคาร</label>
                                 </div>
                                 <br>
                                 <div class="custom-control custom-radio">
@@ -159,8 +154,9 @@
                                         id="payment_type5" name="payment_type"
                                         value="5">
                                     <label class="custom-control-label pointer"
-                                        for="payment_type5" style="padding-left:
-                                        25px !important;">ชำระเงินปลายทาง</label>
+                                        for="payment_type5" style="
+    padding-left: 50px !important;
+">ชำระเงินปลายทาง</label>
                                 </div>
                                 <br>
                             </div>
@@ -174,12 +170,12 @@
                 </div>
             </form>
         </section>
-        @else
+
         <section style="margin-top: 45px">
             <div class="container">
                 <p style="color: #111; font-size:18pt">ขออภัยไม่มีสินค้าในตระกร้า</p>
             </div>
         </section>
-        @endif
+
 
         @endsection

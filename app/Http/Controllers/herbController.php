@@ -53,7 +53,6 @@ class herbController extends Controller
     {
         $herb = DB::table('herbs')
         ->where('herbs.id', $id)->first();
-
         $img = DB::table('herbs')
             ->select('image')
             ->where('herbs.id', $id)->first();

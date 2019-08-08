@@ -60,9 +60,9 @@
                 <br>
                 <div class="hr-line-dashed"></div>
                 <br>
-                <div class="row">
+                <div class="row" style="margin-top: 30px">
                     <div class="col-lg-2"><p class="detail-title">สรรพคุณ</p></div>
-                    <div class="col-lg">{{ $herb->detail }}</div>
+                    <div class="col-lg-8">{{ $herb->detail }}</div>
                 </div>
                 <br>
                 <div class="hr-line-dashed"></div>
