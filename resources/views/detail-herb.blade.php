@@ -17,9 +17,8 @@
                         <img
                             class="card-img-top"
                             src="{{
-                            URL::asset($herb->image) }}"
-                            alt="Card image"
-                            style="width:100%; height: 240px;"
+                            URL::asset('image/herb/'.$herbsImgArray[0]) }}"
+                            style="width:100%; height: auto;"
                             />
                     </div>
                     <div class="col-lg">
@@ -38,8 +37,23 @@
                         <div class="hr-line-dashed"></div>
                         <br>
                         <div class="row">
-                            <div class="col-lg text-center"><a href="#"
-                                    class="btn btn-outline-success">ใส่ตระกร้า</a></div>
+                            <div class="col-lg text-center">
+                                <form action="{{ route('cart.item') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $herb->id }}">
+                                    <input type="hidden" name="name" value="{{ $herb->name }}">
+                                    <input type="hidden" name="price" value="{{ $herb->price }}">
+                                    <input type="hidden" name="qry" value="1">
+                                    <input type="hidden" name="img" value="{{ $herb->image }}">
+                                    {{-- <input type="hidden" name="date" value="null">
+                                    <input type="hidden" name="time" value="null"> --}}
+                                    <input type="hidden" name="type" value="herb">
+
+                                    <button type="submit" class="btn btn-outline-success" style="font-size: 16pt">ใส่ตระกร้า</button>
+                                </form>
+                                {{-- <a href="{{ route('herb.addTocart',['id' => $herb->id, 'type'=> 'herb']) }}"
+                                    class="btn btn-outline-success" style="font-size: 16pt">ใส่ตระกร้า</a>
+                                </div> --}}
                         </div>
                     </div>
                 </div>

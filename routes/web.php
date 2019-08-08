@@ -50,10 +50,10 @@ Route::get('/', function () {
 
 
 // Route::get('/order', 'cartController@index')->name('order');
-Route::get('/cart/{id}', [
-    'uses' => 'cartController@getAddToCart',
-    'as' => 'herb.addTocart'
-]);
+// Route::get('/cart/{id}/{type}', [
+//     'uses' => 'cartController@getAddToCart',
+//     'as' => 'herb.addTocart'
+// ]);
 
 Route::get('/shopping-cart', [
     'uses' => 'cartController@getCart',
@@ -71,6 +71,10 @@ Route::patch('/payment', [
     'uses' => 'cartController@update',
     'as' => 'update.payment'
 ]);
+
+Route::get('/delete-item-product/{id}', 'cartController@deleteItem')->name('delete.item');
+Route::post('/add-item-product', 'cartController@getAddToCart')->name('cart.item');
+Route::get('/cart-show', 'cartController@cartShow')->name('cart.show');
 
 // Auth::routes();
 

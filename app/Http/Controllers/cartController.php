@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Cart;
+// use App\Cart;
+use Cart;
 use DB;
 use App\Docter;
 use Session;
@@ -45,7 +46,7 @@ class cartController extends Controller
     public function store(Request $request)
     {
 
-        if(!Auth::user()) {
+        if (!Auth::user()) {
             return redirect('login');
         } else {
             $oldCart = Session::get('cart');
@@ -60,12 +61,12 @@ class cartController extends Controller
             ]);
 
 
-        // foreach ($cart as $key => $value) {
+            // foreach ($cart as $key => $value) {
 
-        //         // $data = $value[$key]['qry'];
-        //         dd($value[1]);
+            //         // $data = $value[$key]['qry'];
+            //         dd($value[1]);
 
-        // }
+            // }
             // $user_id = Auth::user()->id;
             // Order::create([
             //     'cart' => serialize($cart),
@@ -127,19 +128,19 @@ class cartController extends Controller
         ]);
 
         $path = $request->file('image')->store('public/image');
-            $sub = str_replace("public","storage" , $path);
+        $sub = str_replace("public", "storage", $path);
 
         DB::table('order')
             ->where('order.id', $request->post_id)
             ->update([
                 'image' => $sub,
                 'status' => 1,
-        ]);
+            ]);
 
         // dd($request->post_id,$request->file('image'));
 
         $orders = Auth::user()->orders;
-        $orders->transform(function($order, $key){
+        $orders->transform(function ($order, $key) {
             $order->cart = unserialize($order->cart);
             return $order;
         });
@@ -159,21 +160,81 @@ class cartController extends Controller
         //
     }
 
-    public function getAddToCart(Request $request, $id)
+    public function getAddToCart(Request $request)
     {
-        // $herb = Herb::find($id);
-        $herb = DB::table('herbs')->select('id','name', 'price','image')
-        ->where('herbs.id','=', $id)->first();
+        // if ($type === 'herb') {
+        //     $product = DB::table('herbs')->select('id', 'name', 'price', 'image')
+        //         ->where('herbs.id', '=', $id)->first();
+        // } elseif ($type === 'docter') {
+        //     $product = DB::table('docter')->select('id', 'name', 'price', 'image')
+        //         ->where('docter.id', '=', $id)->first();
+        // } elseif ($type === 'spa') {
+        //     $product = DB::table('spa')->select('id', 'name', 'price', 'image')
+        //         ->where('spa.id', '=', $id)->first();
+        // }
+        // $oldCart = Session::has('cart') ? $request->session()->get('cart') : null;
+        // // dump("oldCart", $oldCart);
+        // $cart = new Cart($oldCart);
+        // // dump("cart", $cart);
+        // $cart->add($product, $product->id);
+        // // dump("cart add", $cart->add($product, $product->id));
+        // $request->session()->put('cart', $cart);
+        // // dump("cart req", $request->session()->put('cart', $cart));
+        // // $herb = Herb::find($id);
 
-        $oldCart = Session::has('cart') ? $request->session()->get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->add($herb, $herb->id);
+        // dd($request->all());
 
-        $request->session()->put('cart', $cart);
+            $type = $request->type;
+            $itemId = $request->id;
+
+            if ($type === 'herb') {
+                $itemById = Herb::where('id',$itemId)->first();
+
+            } elseif($type === 'docter') {
+                // $itemByIdDocter = Docter::where('id',$itemId)->first();
+                // Cart::add([
+                //     'id'=>$itemId,
+                //     'name'=>$itemByIdDocter->name,
+                //     'price'=>$itemByIdDocter->price,
+                //     'qry'=>$request->qry,
+                //     'image'=>$itemById->image,
+                //     'date'=>$request->date,
+                //     'time'=>$request->time,
+                //     'typeBooking'=>$request->typeBooking,
+                // ]);
+            } elseif($type === 'spa'){
+                // $itemBySpaId = Spa::where('id',$itemId)->first();
+                // Cart::add([
+                //     'id'=>$itemId,
+                //     'name'=>$itemBySpaId->name,
+                //     'price'=>$itemBySpaId->price,
+                //     'qry'=>$request->qry,
+                //     'image'=>$itemBySpaId->image,
+                //     'date'=>$request->date,
+                //     'time'=>$request->time,
+                //     'typeBooking'=>$request->typeBooking,
+                // ]);
+            }
+
+            Cart::add([
+                'id'=>$itemId,
+                'name'=>$itemById->name,
+                'price'=>$itemById->price,
+                'qry'=>$request->qry,
+                // 'image'=>$itemById->image,
+            ]);
+
+
         // dd($request->session()->get('cart'));
-        return redirect()->route('herb');
+        return redirect('/cart-show');
     }
 
+    public function cartShow()
+    {
+        $product = Cart::content();
+
+        return view('cart');
+    }
     public function getCart()
     {
         if (!Session::has('cart')) {
@@ -185,12 +246,22 @@ class cartController extends Controller
         return view('payment', ['herb' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 
-    public function getProfileOrder() {
+    public function getProfileOrder()
+    {
         $orders = Auth::user()->orders;
-        $orders->transform(function($order, $key){
+        $orders->transform(function ($order, $key) {
             $order->cart = unserialize($order->cart);
             return $order;
         });
         return view('order', ['orders' => $orders]);
+    }
+
+    public function deleteItem($rowId)
+    {
+        // dd($rowId);
+        $product = session::forget('cart', $rowId);
+        // Cart::remove($id);
+        // Cart::remove($rowId);
+        return redirect()->back();
     }
 }

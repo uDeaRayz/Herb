@@ -37,15 +37,13 @@
                 <div class="col-md-8 col-lg-8">
                     <div class="card">
                         <div class="card-header">รถเข็นของคุณ <span
-                                class="badge">{{
-                                Session::has('cart') ? Session::get('cart')->totalQty
-                                : '' }}</span></div>
-                        @foreach ($herb as $item)
+                                class="badge"></span></div>
+                        {{-- @foreach ($herb as $item) --}}
                         {{-- {{ dd($item['price']) }} --}}
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-3 text-center">
-                                    <img
+                                    {{-- <img
                                         class="card-img-top"
                                         src="{{
                                         URL::asset($item['item']->image) }}"
@@ -53,13 +51,13 @@
                                         $item['item']->name }}"
                                         style="height: 15vh;
                                         width: 15vh;"
-                                        />
+                                        /> --}}
                                 </div>
                                 <div class="col-lg">
                                     <div class="row">
                                         <div class="col-lg">
                                             <p style="color: #111;">ชื่อสินค้า
-                                                <span style="color: #111;">{{ $item['item']->name }}</span>
+                                                <span style="color: #111;"></span>
                                             </p>
                                         </div>
                                     </div>
@@ -75,7 +73,7 @@
                                                 <p
                                                     style="color:#111
                                                     !important;">จำนวน
-                                                    &nbsp;&nbsp;{{ $item['qty'] }}
+                                                    &nbsp;&nbsp;
                                                     &nbsp;&nbsp;ชิ้น
                                                     <p>
 
@@ -87,10 +85,10 @@
                                                     <p style="color: #111;">ราคา
                                                         &nbsp;&nbsp;<span
                                                             style="color:
-                                                            #111;">{{ $item['price'] }}</span>
+                                                            #111;"></span>
                                                         &nbsp;&nbsp;บาท</p>
                                                 </div>
-                                                <a href="{{ route('delete.item',$item['item']->id)}}"
+                                                <a href=""
                                                     class="btn
                                                     btn-outline-danger">ยกเลิก</a>
                                             </div>
@@ -98,7 +96,7 @@
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
-                                @endforeach
+                                {{-- @endforeach --}}
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 bg-dark" style="padding:
@@ -109,7 +107,7 @@
                             <br><br><br>
                             <div class="row" style="color: #fff">
                                 <div class="col-3">ยอดรวม</div>
-                                <div class="col text-right">{{ $totalPrice }}
+                                <div class="col text-right">
                                     บาท</div>
                             </div>
                             <br><br>

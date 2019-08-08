@@ -18,7 +18,7 @@
                             class="card-img-top"
                             src="{{
                             URL::asset('image/docter/'.$docterImgArray[0]) }}"
-                        alt="Card image"
+
                         style="width:100%; height: auto;"
                         />
                     </div>
