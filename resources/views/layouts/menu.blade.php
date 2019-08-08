@@ -28,10 +28,10 @@
             <a style="font-size: 16pt !important;" href="{{ route('contact') }}">ติดต่อเรา</a>
         </li>
         <li>
-                <a style="font-size: 16pt !important;" href="{{ route('order') }}">
+                <a style="font-size: 16pt !important;" href="{{ route('cart') }}">
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                     ตระกร้าสินค้า
-                    <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
+                    <span class="badge"></span>
                 </a>
             </li>
         <li>
@@ -59,10 +59,10 @@
             <a style="font-size: 16pt !important;" href="{{ route('contact') }}">ติดต่อเรา</a>
         </li>
         <li>
-            <a style="font-size: 16pt !important;" href="{{ route('order') }}">
+            <a style="font-size: 16pt !important;" href="{{ route('cart') }}">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 ตระกร้าสินค้า
-                <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
+                <span class="badge"></span>
             </a>
         </li>
         <li class="nav-item dropdown">

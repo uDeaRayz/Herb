@@ -17,7 +17,7 @@
                         <img
                             class="card-img-top"
                             src="{{
-                            URL::asset($herb->image) }}"
+                            URL::asset('image/herb/'.$herbImgArray[0]) }}"
                             alt="Card image"
                             style="width:100%; height: 240px;"
                             />
@@ -38,17 +38,16 @@
                         <div class="hr-line-dashed"></div>
                         <br>
                         <div class="row">
-                            <div class="col-lg text-center"><a href="#"
-                                    class="btn btn-outline-success">ใส่ตระกร้า</a></div>
+                            <div class="col-lg text-center"><a href="{{ route('herb.addTocart',['id' => $herb->id]) }}" class="btn btn-outline-success">ใส่ตระกร้า</a>
                         </div>
                     </div>
                 </div>
                 <br>
                 <div class="hr-line-dashed"></div>
                 <br>
-                <div class="row">
+                <div class="row" style="margin-top: 30px">
                     <div class="col-lg-2"><p class="detail-title">สรรพคุณ</p></div>
-                    <div class="col-lg">{{ $herb->detail }}</div>
+                    <div class="col-lg-8">{{ $herb->detail }}</div>
                 </div>
                 <br>
                 <div class="hr-line-dashed"></div>

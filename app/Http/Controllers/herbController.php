@@ -52,7 +52,15 @@ class herbController extends Controller
     {
         $herb = DB::table('herbs')
         ->where('herbs.id', $id)->first();
-        return view('detail-herb' ,compact('herb'));
+        $img = DB::table('herbs')
+            ->select('image')
+            ->where('herbs.id', $id)->first();
+            if ($img !== "") {
+                foreach ($img as $fileString) {
+                    $herbImgArray = explode('|', $fileString);
+                }
+            }
+        return view('detail-herb' ,compact('herb','herbImgArray'));
     }
 
     /**

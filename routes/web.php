@@ -17,60 +17,45 @@ use App\Spa;
 
 Route::get('/', function () {
         $docter = Docter::inRandomOrder()->get();
-        // $docterImg = DB::table('docter')
-        //     ->select('image')->get();
-        // foreach ($docterImg as $fileString) {
-        //     // now we have one single file record
-        //     // $docterImgArray = explode('|', $fileString);
-        // }
-        // dd($docterImg);
         $herb = Herb::inRandomOrder()->get();
-        // $herbImg = DB::table('herbs')
-        //     ->select('image')->get();
-        // foreach ($herbImg as $fileString) {
-        //     // now we have one single file record
-        //     // $herbImgArray = explode('|', $fileString);
-        // }
-        // dd($herbImg);
         $spa = Spa::inRandomOrder()->get();
             foreach ($spa as $value) {
             $images = $value->image;
                 if ($images === "") {
-                    // dump(1);
                 } else {
                     $spaImgArray = explode('|', $images);
                 }
             }
-                        // foreach ($spaImgArray as $key => $item) {
-                        //     # code...
-                        //     dump($item);
-                        // }
         return view('welcome',compact('docter','herb','spa','spaImgArray'));
 });
 
+Route::get('/cart', 'cartController@index')->name('cart');
+
 
 // Route::get('/order', 'cartController@index')->name('order');
-Route::get('/cart/{id}', [
-    'uses' => 'cartController@getAddToCart',
-    'as' => 'herb.addTocart'
-]);
+// Route::get('/cart/{id}', [
+//     'uses' => 'cartController@getAddToCart',
+//     'as' => 'herb.addTocart'
+// ]);
 
-Route::get('/shopping-cart', [
-    'uses' => 'cartController@getCart',
-    'as' => 'order'
-]);
-Route::post('/order', [
-    'uses' => 'cartController@store',
-    'as' => 'order.payment'
-]);
-Route::get('/my-order', [
-    'uses' => 'cartController@getProfileOrder',
-    'as' => 'order.profile'
-]);
-Route::patch('/payment', [
-    'uses' => 'cartController@update',
-    'as' => 'update.payment'
-]);
+// Route::get('/shopping-cart', [
+//     'uses' => 'cartController@getCart',
+//     'as' => 'order'
+// ]);
+// Route::post('/order', [
+//     'uses' => 'cartController@store',
+//     'as' => 'order.payment'
+// ]);
+// Route::get('/my-order', [
+//     'uses' => 'cartController@getProfileOrder',
+//     'as' => 'order.profile'
+// ]);
+// Route::patch('/payment', [
+//     'uses' => 'cartController@update',
+//     'as' => 'update.payment'
+// ]);
+
+
 
 // Auth::routes();
 
