@@ -67,6 +67,13 @@
                 <br>
                 <div class="hr-line-dashed"></div>
                 <br>
+                <div class="row" style="margin-top: 30px">
+                    <div class="col-lg-2"><p class="detail-title">ยาที่มีส่วนประกอบของ {{ $herb->name }}</p></div>
+                    <div class="col-lg-8">{{ $herb->drugDetail }}</div>
+                </div>
+                <br>
+                <div class="hr-line-dashed"></div>
+                <br>
             </div>
         </div>
     </div>

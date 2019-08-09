@@ -50,6 +50,17 @@
                     <br>
                     <div class="row">
                         <div class="col-lg-4 text-right">
+                            <p class="detail-title">ส่วนประกอบของตัวยา</p>
+                        </div>
+                        <div class="col-lg-5">
+                                <label for="">{{ $herb->drugDetail }}</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="hr-line-dashed"></div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-4 text-right">
                             <p class="detail-title">ราคา</p>
                         </div>
                         <div class="col-lg-4">

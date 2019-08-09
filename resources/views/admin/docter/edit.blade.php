@@ -25,7 +25,7 @@
                     <br>
                     <div class="row">
                         <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">อายุ<span style="color: red;">*</span></p>
+                            <p style="color: #111; font-size: 13pt">อายุ</p>
                         </div>
                         <div class="col-lg-5">
                             <input  type="text" class="form-control" id="age"

@@ -369,7 +369,8 @@ class AdminController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'detail' => 'required',
+            'detail' => 'nullable',
+            'drugDetail' => 'nullable',
             'price' => 'required',
             'stock' => 'required',
             'image' => 'nullable',
@@ -388,6 +389,7 @@ class AdminController extends Controller
             $herb =  Herb::create([
                 'name' => $request['name'],
                 'detail' => $request['detail'],
+                'drugDetail' => $request['drugDetail'],
                 'price' => $request['price'],
                 'stock' => $request['stock'],
                 'image' => implode("|", $images),
@@ -396,6 +398,7 @@ class AdminController extends Controller
             $herb =  Herb::create([
                 'name' => $request['name'],
                 'detail' => $request['detail'],
+                'drugDetail' => $request['drugDetail'],
                 'price' => $request['price'],
                 'stock' => $request['stock'],
             ]);
@@ -407,7 +410,8 @@ class AdminController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'detail' => 'required',
+            'detail' => 'nullable',
+            'drugDetail' => 'nullable',
             'price' => 'required',
             'stock' => 'required',
             'image' => 'nullable',
@@ -426,6 +430,7 @@ class AdminController extends Controller
                 ->update([
                     'name' => $request['name'],
                     'detail' => $request['detail'],
+                    'drugDetail' => $request['drugDetail'],
                     'price' => $request['price'],
                     'stock' => $request['stock'],
                     'image' => implode("|", $images),
@@ -436,6 +441,7 @@ class AdminController extends Controller
                 ->update([
                     'name' => $request['name'],
                     'detail' => $request['detail'],
+                    'drugDetail' => $request['drugDetail'],
                     'price' => $request['price'],
                     'stock' => $request['stock'],
                 ]);
@@ -464,10 +470,11 @@ class AdminController extends Controller
         $orders = DB::table('order')
             ->orderBy('order.id', 'asc')
             ->paginate(15);
-        $orders->transform(function ($order, $key) {
-            $order->cart = unserialize($order->cart);
-            return $order;
-        });
+            // dd($orders);
+        // $orders->transform(function ($order, $key) {
+        //     $order->cart = unserialize($order->cart);
+        //     return $order;
+        // });
         return view('admin/order/order', ['orders' => $orders]);
     }
     public function view_order($id)

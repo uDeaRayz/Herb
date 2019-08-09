@@ -17,6 +17,7 @@ class CreateHerbsTable extends Migration
             $table->bigIncrements('id');
             $table->char('name', 100);
             $table->longText('detail')->nullable();
+            $table->longText('drugDetail')->nullable();
             $table->integer('price');
             $table->integer('stock');
             $table->string('image')->nullable();

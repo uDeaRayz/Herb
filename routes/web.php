@@ -46,10 +46,10 @@ Route::get('/cart', 'cartController@index')->name('cart');
 //     'uses' => 'cartController@store',
 //     'as' => 'order.payment'
 // ]);
-// Route::get('/my-order', [
-//     'uses' => 'cartController@getProfileOrder',
-//     'as' => 'order.profile'
-// ]);
+Route::get('/my-order', [
+    'uses' => 'cartController@getProfileOrder',
+    'as' => 'order.profile'
+]);
 // Route::patch('/payment', [
 //     'uses' => 'cartController@update',
 //     'as' => 'update.payment'

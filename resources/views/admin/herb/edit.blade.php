@@ -27,7 +27,16 @@
                             <p style="color: #111; font-size: 13pt">สรรพคุณ</p>
                         </div>
                         <div class="col-lg-5">
-                            <textarea class="form-control" rows="3" id="detail" name="detail" value="">{{ $herb->detail }}</textarea>
+                            <textarea class="form-control" rows="5" id="detail" name="detail" value="">{{ $herb->detail }}</textarea>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-4 text-right">
+                            <p style="color: #111; font-size: 13pt">ส่วนประกอบของตัวยา<span style="color: red;">*</span></p>
+                        </div>
+                        <div class="col-lg-5">
+                            <textarea class="form-control" rows="5" id="drugDetail" name="drugDetail"></textarea>
                         </div>
                     </div>
                     <br>

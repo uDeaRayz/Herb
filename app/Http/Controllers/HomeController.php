@@ -27,13 +27,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $docter = Docter::all();
-        $herb = Herb::all();
-        $spa = Spa::all();
-//         dd($docter);
-//         var_dump($docter);
-// die();
-        return view('welcome',compact('docter','herb','spa'));
+        $docter = Docter::inRandomOrder()->get();
+        $herb = Herb::inRandomOrder()->get();
+        $spa = Spa::inRandomOrder()->get();
+            foreach ($spa as $value) {
+            $images = $value->image;
+                if ($images === "") {
+                } else {
+                    $spaImgArray = explode('|', $images);
+                }
+            }
+        return view('welcome',compact('docter','herb','spa','spaImgArray'));
 
     }
 }

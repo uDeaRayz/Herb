@@ -1,12 +1,4 @@
-<?php
-if ( Cart::getTotalQuantity() > 0) {
-    $qry =  Cart::getTotalQuantity();
-} else {
-    $qry = '';
-}
 
-
-    ?>
 <nav>
     <div id="logo">
         <h1>
@@ -40,7 +32,7 @@ if ( Cart::getTotalQuantity() > 0) {
                 <a style="font-size: 16pt !important;" href="{{ route('cart') }}">
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                     ตระกร้าสินค้า
-                    <span class="badge">{{$qry}}</span>
+                    <span class="badge"></span>
                 </a>
             </li>
         <li>
@@ -71,7 +63,7 @@ if ( Cart::getTotalQuantity() > 0) {
             <a style="font-size: 16pt !important;" href="{{ route('cart') }}">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 ตระกร้าสินค้า
-                <span class="badge">{{$qry}}</span>
+                <span class="badge"></span>
             </a>
         </li>
         <li class="nav-item dropdown">
@@ -81,9 +73,9 @@ if ( Cart::getTotalQuantity() > 0) {
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a style="font-size: 16pt !important;" class="dropdown-item" href="{{ route('order.profile') }}">
+                {{-- <a style="font-size: 16pt !important;" class="dropdown-item" href="{{ route('order.profile') }}">
                     {{ __('รายการสั่งซื้อ') }}
-                </a>
+                </a> --}}
                 <a style="font-size: 16pt !important;" class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
                     {{ __('ออกจากระบบ') }}
