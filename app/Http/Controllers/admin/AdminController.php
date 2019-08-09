@@ -52,7 +52,7 @@ class AdminController extends Controller
             if ($files = $request->file('image')) {
                 foreach ($files as $file) {
                     $name = $file->getClientOriginalName();
-                    $file->move('image/docter', $name);
+                    $file->move('image', $name);
                     $images[] = $name;
                 }
             }
@@ -119,7 +119,7 @@ class AdminController extends Controller
             if ($files = $request->file('image')) {
                 foreach ($files as $file) {
                     $name = $file->getClientOriginalName();
-                    $file->move('image/docter', $name);
+                    $file->move('image', $name);
                     $images[] = $name;
                 }
             }
@@ -219,7 +219,7 @@ class AdminController extends Controller
             if ($files = $request->file('image')) {
                 foreach ($files as $file) {
                     $name = $file->getClientOriginalName();
-                    $file->move('image/spa', $name);
+                    $file->move('image', $name);
                     $images[] = $name;
                 }
             }
@@ -293,7 +293,7 @@ class AdminController extends Controller
             if ($files = $request->file('image')) {
                 foreach ($files as $file) {
                     $name = $file->getClientOriginalName();
-                    $file->move('image/spa', $name);
+                    $file->move('image', $name);
                     $images[] = $name;
                 }
             }
@@ -381,7 +381,7 @@ class AdminController extends Controller
             if ($files = $request->file('image')) {
                 foreach ($files as $file) {
                     $name = $file->getClientOriginalName();
-                    $file->move('image/herb', $name);
+                    $file->move('image', $name);
                     $images[] = $name;
                 }
             }
@@ -417,7 +417,7 @@ class AdminController extends Controller
             if ($files = $request->file('image')) {
                 foreach ($files as $file) {
                     $name = $file->getClientOriginalName();
-                    $file->move('image/herb', $name);
+                    $file->move('image', $name);
                     $images[] = $name;
                 }
             }

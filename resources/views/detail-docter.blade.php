@@ -17,7 +17,7 @@
                         <img
                             class="card-img-top"
                             src="{{
-                            URL::asset('image/docter/'.$docterImgArray[0]) }}"
+                            URL::asset('image/'.$docterImgArray[0]) }}"
 
                         style="width:100%; height: auto;"
                         />
@@ -72,7 +72,7 @@
                 <br>
                 <div class="hr-line-dashed"></div>
                 <br>
-                <form>
+                <form action="{{ route('cart.item') }}" method="post">
                     <div class="row">
                         <div class="col-lg-3"><b>หมายเหตุ</b></div>
                         <div class="col-lg">
@@ -84,14 +84,16 @@
                                                 class="form-control"
                                                 type="date"
                                                 value="2011-08-19"
-                                                id="example-date-input" style="font-size: 15pt;"></div>
+                                                name="date"
+                                                id="date" style="font-size: 15pt;"></div>
                                         <div class="p-2"></div>
                                         <div class="p-2"><label>เวลา</label></div>
                                         <div class="p-2"><input
                                                 class="form-control"
                                                 type="time"
                                                 value="13:45:00"
-                                                id="example-time-input" style="font-size: 15pt;"></div>
+                                                name="time"
+                                                id="time" style="font-size: 15pt;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -110,8 +112,8 @@
                                     <div class="custom-control custom-radio">
                                         <input type="radio"
                                             class="custom-control-input"
-                                            id="morning" name="haftday"
-                                            value="customEx">
+                                            id="typeM" name="typeBook"
+                                            value="1">
                                         <label class="custom-control-label"
                                             for="morning" style="padding-left: 30px;">ช่วงเช้า</label>
                                     </div>
@@ -120,8 +122,8 @@
                                     <div class="custom-control custom-radio">
                                         <input type="radio"
                                             class="custom-control-input"
-                                            id="afternoon" name="haftday"
-                                            value="customEx">
+                                            id="typeA" name="typeBook"
+                                            value="2">
                                         <label class="custom-control-label"
                                             for="afternoon" style="padding-left: 30px;">
                                             ช่วงบ่าย</label>
@@ -133,7 +135,18 @@
                     <br>
                     <div class="row">
                         <div class="col-12  text-center">
-                            <button type="submit" class="btn btn-outline-success" style="font-size: 15pt; margin: 15px;">จองคิวคุณหมอ</button>
+
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $docter->id }}">
+                                        <input type="hidden" name="name" value="{{ $docter->name }}">
+                                        <input type="hidden" name="price" value="{{ $docter->price }}">
+                                        <input type="hidden" name="qry" value="1">
+                                        <input type="hidden" name="img" value="{{ $docter->image }}">
+                                        <input type="hidden" name="type" value="docter">
+
+                                        <button type="submit" class="btn btn-outline-success" style="font-size: 16pt">จองคิวคุณหมอ</button>
+
+                            {{-- <button type="submit" class="btn btn-outline-success" style="font-size: 15pt; margin: 15px;">จองคิวคุณหมอ</button> --}}
                         </div>
                     </div>
                 </form>

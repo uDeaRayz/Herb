@@ -33,63 +33,66 @@
                     <div class="card">
                         <div class="card-header">รถเข็นของคุณ <span
                                 class="badge"></span></div>
-
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-3 text-center">
-                                    <img
-                                        class="card-img-top"
-                                        src=""
-                                        alt=""
-                                        style="height: 15vh;
-                                        width: 15vh;"
-                                        />
-                                </div>
-                                <div class="col-lg">
+                                @foreach ($product as $item)
+                                <div class="card-body">
                                     <div class="row">
-                                        <div class="col-lg">
-                                            <p style="color: #111;">ชื่อสินค้า
-                                                <span style="color: #111;"></span>
-                                            </p>
-                                        </div>
+                                    <div class="col-lg-3 text-center">
+                                        <img
+                                            class="card-img-top"
+                                            src=""
+                                            alt=""
+                                            style="height: 15vh;
+                                            width: 15vh;"
+                                            />
                                     </div>
-                                    <div class="row">
-                                        <div class="d-flex p-3" style="padding:
-                                            0rem
-                                            !important;
-                                            padding-top: 0rem !important;
-                                            padding-right: 0rem !important;
-                                            padding-bottom: 0rem !important;
-                                            padding-left: 0.5rem !important;">
-                                            <div class="p-2">
-                                                <p
-                                                    style="color:#111
-                                                    !important;">จำนวน
-                                                    &nbsp;&nbsp;
-                                                    &nbsp;&nbsp;ชิ้น
-                                                    <p>
+                                    <div class="col-lg">
+                                        <div class="row">
+                                            <div class="col-lg">
+                                                <p style="color: #111;">ชื่อสินค้า
+                                                <span style="color: #111;">{{ $item->name }}</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="d-flex p-3" style="padding:
+                                                0rem
+                                                !important;
+                                                padding-top: 0rem !important;
+                                                padding-right: 0rem !important;
+                                                padding-bottom: 0rem !important;
+                                                padding-left: 0.5rem !important;">
+                                                <div class="p-2">
+                                                    <p
+                                                        style="color:#111
+                                                        !important;">จำนวน
+                                                        &nbsp;&nbsp;
+                                                        {{ $item->quantity }}
+                                                        &nbsp;&nbsp;ชิ้น
+                                                        <p>
 
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg">
-                                                    <p style="color: #111;">ราคา
-                                                        &nbsp;&nbsp;<span
-                                                            style="color:
-                                                            #111;"></span>
-                                                        &nbsp;&nbsp;บาท</p>
+                                                <div class="row">
+                                                    <div class="col-lg">
+                                                        <p style="color: #111;">ราคา
+                                                            &nbsp;&nbsp;<span
+                                                                style="color:
+                                                                #111;">{{ $item->price }}</span>
+                                                            &nbsp;&nbsp;บาท</p>
+                                                    </div>
+                                                    <a href=""
+                                                        class="btn
+                                                        btn-outline-danger">ยกเลิก</a>
                                                 </div>
-                                                <a href="{{ route('delete.item',$item['item']->id)}}"
-                                                    class="btn
-                                                    btn-outline-danger">ยกเลิก</a>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="hr-line-dashed"></div>
                                 </div>
-                                <div class="hr-line-dashed"></div>
                             </div>
-                        </div>
+                            @endforeach
+
                         <div class="col-md-4 col-lg-4 bg-dark" style="padding:
                             10px">
                             <h5 style="color: #fff">สรุป</h5>

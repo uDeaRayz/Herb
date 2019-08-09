@@ -47,7 +47,7 @@
                                 $docterImgArray = explode('|', $images);
                             }
                                  ?>
-                                      <img src="{{ URL::asset('image/docter/'.$docterImgArray[0]) }}" style="width: 133px;
+                                      <img src="{{ URL::asset('image/'.$docterImgArray[0]) }}" style="width: 133px;
                                       height: 128px;" alt="news image" class="img-fluid">
                                       {{-- @endforeach --}}
                                       <div class="ser-text-wthree mt-3 ellipsis">
@@ -110,7 +110,7 @@
                                 $herbImgArray = explode('|', $images);
                             }
                                  ?>
-                  <img src="{{ URL::asset('image/herb/'.$herbImgArray[0]) }}" alt="{{ $herbs->name }}" class="img-fluid" style="width:60%; height:auto; ">
+                  <img src="{{ URL::asset('image/'.$herbImgArray[0]) }}" alt="{{ $herbs->name }}" class="img-fluid" style="width:60%; height:auto; ">
                 </div>
               </div>
               <?php $count++; ?>
@@ -138,7 +138,7 @@
                                 $herbImgArray = explode('|', $images);
                             }
                                  ?>
-                  <img  src="{{ URL::asset('image/herb/'.$herbImgArray[0]) }}" alt="{{ $herbs->name }}" class="img-fluid" style="width:100%; height:auto; ">
+                  <img  src="{{ URL::asset('image/'.$herbImgArray[0]) }}" alt="{{ $herbs->name }}" class="img-fluid" style="width:100%; height:auto; ">
                 </a>
               </div>
             </div>
@@ -156,7 +156,7 @@
                             $herbImgArray = explode('|', $images);
                         }
                              ?>
-              <img src="{{ URL::asset('image/herb/'.$herbImgArray[0]) }}" alt="{{ $herbs->name }}" class="img-fluid">
+              <img src="{{ URL::asset('image/'.$herbImgArray[0]) }}" alt="{{ $herbs->name }}" class="img-fluid">
               <a class="close" href="#gallery">×</a>
             </div>
           </div>
@@ -185,7 +185,7 @@
                     $spaImgArray = explode('|', $images);
                 }
                      ?>
-                  <img src="{{ URL::asset('image/spa/'.$spaImgArray[0]) }}" class="img-fluid" alt=""  style="height: 233px !important; width: 355px;">
+                  <img src="{{ URL::asset('image/'.$spaImgArray[0]) }}" class="img-fluid" alt=""  style="height: 233px !important; width: 355px;">
                 <div class="blog-info" style="width:120px">
                   <a href="#about">
                     <ul>

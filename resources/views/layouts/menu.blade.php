@@ -1,3 +1,12 @@
+<?php
+if ( Cart::getTotalQuantity() > 0) {
+    $qry =  Cart::getTotalQuantity();
+} else {
+    $qry = '';
+}
+
+
+    ?>
 <nav>
     <div id="logo">
         <h1>
@@ -31,7 +40,7 @@
                 <a style="font-size: 16pt !important;" href="{{ route('cart') }}">
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                     ตระกร้าสินค้า
-                    <span class="badge"></span>
+                    <span class="badge">{{$qry}}</span>
                 </a>
             </li>
         <li>
@@ -62,7 +71,7 @@
             <a style="font-size: 16pt !important;" href="{{ route('cart') }}">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 ตระกร้าสินค้า
-                <span class="badge"></span>
+                <span class="badge">{{$qry}}</span>
             </a>
         </li>
         <li class="nav-item dropdown">

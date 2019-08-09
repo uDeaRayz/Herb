@@ -24,7 +24,7 @@ class cartController extends Controller
      */
     public function index()
     {
-        return view('order');
+        return view('payment');
     }
 
     /**
@@ -182,47 +182,59 @@ class cartController extends Controller
         // // dump("cart req", $request->session()->put('cart', $cart));
         // // $herb = Herb::find($id);
 
-        // dd($request->all());
+        // dump($request->all());
 
             $type = $request->type;
             $itemId = $request->id;
 
             if ($type === 'herb') {
+                // dd("jjj");
                 $itemById = Herb::where('id',$itemId)->first();
-
+                Cart::add([
+                    'id'=>$itemId,
+                    'name'=>$itemById->name,
+                    'price'=>$itemById->price,
+                    'quantity'=>$request->qry,
+                    'attributes' => array( // attributes field is optional
+                        'image' => $itemById->image,
+                        'date' => '',
+                        'time' => '',
+                        'typeBooking' => ''
+                    )
+                ]);
             } elseif($type === 'docter') {
-                // $itemByIdDocter = Docter::where('id',$itemId)->first();
-                // Cart::add([
-                //     'id'=>$itemId,
-                //     'name'=>$itemByIdDocter->name,
-                //     'price'=>$itemByIdDocter->price,
-                //     'qry'=>$request->qry,
-                //     'image'=>$itemById->image,
-                //     'date'=>$request->date,
-                //     'time'=>$request->time,
-                //     'typeBooking'=>$request->typeBooking,
-                // ]);
+                // dd("jj");
+                $itemByIdDocter = Docter::where('id',$itemId)->first();
+                Cart::add([
+                    'id'=>$itemId,
+                    'name'=>$itemByIdDocter->name,
+                    'price'=>$itemByIdDocter->price,
+                    'quantity'=>$request->qry,
+                    'attributes' => array( // attributes field is optional
+                        'image' => $itemByIdDocter->image,
+                        'date' => $request->date,
+                        'time' => $request->time,
+                        'typeBooking' => $request->typeBook
+                    )
+                ]);
             } elseif($type === 'spa'){
-                // $itemBySpaId = Spa::where('id',$itemId)->first();
-                // Cart::add([
-                //     'id'=>$itemId,
-                //     'name'=>$itemBySpaId->name,
-                //     'price'=>$itemBySpaId->price,
-                //     'qry'=>$request->qry,
-                //     'image'=>$itemBySpaId->image,
-                //     'date'=>$request->date,
-                //     'time'=>$request->time,
-                //     'typeBooking'=>$request->typeBooking,
-                // ]);
+                // dd("j");
+                $itemBySpaId = Spa::where('id',$itemId)->first();
+                Cart::add([
+                    'id'=>$itemId,
+                    'name'=>$itemBySpaId->name,
+                    'price'=>$itemBySpaId->price,
+                    'quantity'=>$request->qry,
+                    'attributes' => array( // attributes field is optional
+                        'image' => $itemBySpaId->image,
+                        'date' => $request->date,
+                        'time' => $request->time,
+                        'typeBooking' => $request->typeBook
+                    )
+                ]);
             }
 
-            Cart::add([
-                'id'=>$itemId,
-                'name'=>$itemById->name,
-                'price'=>$itemById->price,
-                'qry'=>$request->qry,
-                // 'image'=>$itemById->image,
-            ]);
+
 
 
         // dd($request->session()->get('cart'));
@@ -231,9 +243,22 @@ class cartController extends Controller
 
     public function cartShow()
     {
-        $product = Cart::content();
+        $product = Cart::getContent();
+        dd($product);
+        foreach($product as $condition)
+{
+    // foreach($condition->attributesas as $item)
+    // {
 
-        return view('cart');
+    //     dd($item); // the attributes of the condition, returns an empty [] if no attributes added
+    // }
+
+    dd($condition); // the attributes of the condition, returns an empty [] if no attributes added
+}
+
+
+
+        // return view('payment', ['product' => $product]);
     }
     public function getCart()
     {
@@ -256,12 +281,12 @@ class cartController extends Controller
         return view('order', ['orders' => $orders]);
     }
 
-    public function deleteItem($rowId)
+    public function deleteItem($id)
     {
         // dd($rowId);
-        $product = session::forget('cart', $rowId);
+        $product = session::forget('cart', $id);
         // Cart::remove($id);
-        // Cart::remove($rowId);
-        return redirect()->back();
+        Cart::remove($id);
+        return redirect()->back()->with('msg', "ลบรายสำเร็จ!");
     }
 }

@@ -17,7 +17,7 @@
                                 </div>
                                 <div class="col-lg-5">
                                         @if (!$herb->image == null)
-                                        <img src="{{ asset('image/herb/'.$imagesArray[0]) }}"style="height:250px; width:300px;">
+                                        <img src="{{ asset('image/'.$imagesArray[0]) }}"style="height:250px; width:300px;">
                                         @else
                                         <img src="{{ URL::asset('images/no_image.png') }}"style="height:250px; width:300px;">
                                         @endif

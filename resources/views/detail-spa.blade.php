@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-lg-5">
                         <img class="card-img-top" src="{{
-                                URL::asset('image/spa/'.$spaImgArray[0]) }}" alt="{{ $spa->name }}" style="width:100%; height: auto;" />
+                                URL::asset('image/'.$spaImgArray[0]) }}" alt="{{ $spa->name }}" style="width:100%; height: auto;" />
                     </div>
                     <div class="col-lg">
                         <div class="row">
@@ -62,19 +62,29 @@
                 <br>
                 <div class="hr-line-dashed"></div>
                 <br>
-                <form>
+                <form action="{{ route('cart.item') }}" method="post">
                     <div class="row">
                         <div class="col-lg-3"><b>หมายเหตุ</b></div>
                         <div class="col-lg-9">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="d-flex">
-                                        <div class="p-2"><label>วันที่</label></div>
-                                        <div class="p-2"><input class="form-control" type="date" value="2011-08-19" id="example-date-input" style="font-size: 15pt;"></div>
-                                        <div class="p-2"></div>
-                                        <div class="p-2"><label>เวลา</label></div>
-                                        <div class="p-2"><input class="form-control" type="time" value="13:45:00" id="example-time-input" style="font-size: 15pt;"></div>
-                                    </div>
+                                        <div class="d-flex">
+                                                <div class="p-2"><label>วันที่</label></div>
+                                                <div class="p-2"><input
+                                                        class="form-control"
+                                                        type="date"
+                                                        value="2011-08-19"
+                                                        name="date"
+                                                        id="date" style="font-size: 15pt;"></div>
+                                                <div class="p-2"></div>
+                                                <div class="p-2"><label>เวลา</label></div>
+                                                <div class="p-2"><input
+                                                        class="form-control"
+                                                        type="time"
+                                                        value="13:45:00"
+                                                        name="time"
+                                                        id="time" style="font-size: 15pt;"></div>
+                                            </div>
                                 </div>
                             </div>
                         </div>
@@ -87,27 +97,27 @@
                         <div class="col-lg-9">
 
                             <div class="d-flex">
-                                <div class="p-2"><b>จองครึ่งวัน</b></div>
-                                <div class="p-2">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" id="morning" name="haftday" value="customEx">
-                                        <label class="custom-control-label" for="morning" style="padding-left: 30px;">ช่วงเช้า</label>
-                                    </div>
-                                </div>
-                                <div class="p-2">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" id="afternoon" name="haftday" value="customEx">
-                                        <label class="custom-control-label" for="afternoon" style="padding-left: 30px;">
-                                            ช่วงบ่าย</label>
-                                    </div>
-                                </div>
+                                    <select name="typeBook" id="typeBook" class="custom-select">
+                                            <option selected>---จองตามช่วงเวลา---</option>
+                                            <option value="1">ช่วงเช้า</option>
+                                            <option value="2">ช่วงบ่าย</option>
+                                          </select>
                             </div>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-lg-12  text-center">
-                            <button type="submit" class="btn btn-outline-success" style="font-size: 15pt; margin: 15px;">จองคิวร้านสปา</button>
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $spa->id }}">
+                                <input type="hidden" name="name" value="{{ $spa->name }}">
+                                <input type="hidden" name="price" value="{{ $spa->price }}">
+                                <input type="hidden" name="qry" value="1">
+                                <input type="hidden" name="img" value="{{ $spa->image }}">
+                                <input type="hidden" name="type" value="spa">
+
+                                <button type="submit" class="btn btn-outline-success" style="font-size: 16pt">จองคิวร้านสปา</button>
+                            {{-- <button type="submit" class="btn btn-outline-success" style="font-size: 15pt; margin: 15px;">จองคิวร้านสปา</button> --}}
                         </div>
                     </div>
                 </form>

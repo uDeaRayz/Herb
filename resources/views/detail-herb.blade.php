@@ -17,7 +17,7 @@
                         <img
                             class="card-img-top"
                             src="{{
-                            URL::asset('image/herb/'.$herbsImgArray[0]) }}"
+                            URL::asset('image/'.$herbsImgArray[0]) }}"
                             style="width:100%; height: auto;"
                             />
                     </div>

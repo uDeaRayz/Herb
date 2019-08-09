@@ -24,7 +24,7 @@
                             }
                             ?>
                             <img class="card-img-top" src="{{
-                                    URL::asset('image/spa/'.$spaImgArray[0])
+                                    URL::asset('image/'.$spaImgArray[0])
                                     }}" alt="Card image" style="width:100%; height: 240px;" />
                             <div class="card-body text-center ellipsis">
                                 <a href="{{ route('spa-detail',

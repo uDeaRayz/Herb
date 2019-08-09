@@ -20,7 +20,7 @@
                                             @if (!$spa->image == null)
                                             {{-- @foreach ($imagesArray as $image) --}}
                                         <div class="col-6">
-                                            <img src="{{ asset('image/spa/'.$imagesArray[0]) }}"style="height:250px; width:300px;"> <!-- Single image -->
+                                            <img src="{{ asset('image/'.$imagesArray[0]) }}"style="height:250px; width:300px;"> <!-- Single image -->
                                         </div>
                                         {{-- @endforeach --}}
                                     </div>
