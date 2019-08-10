@@ -105,14 +105,14 @@ class spaController extends Controller
                 $spa = DB::table('spa')->paginate(9);
             } else {
                 $spa = DB::table('spa')
-                ->where('spa.province', 'like','%'.$name.'%')->paginate(9);
+                ->where('spa.district', 'like','%'.$name.'%')->paginate(9);
             }
         } else if ($type === 'store') {
             if ($name === 'all') {
                 $spa = DB::table('spa')->paginate(9);
             } else {
                 $spa = DB::table('spa')
-                ->where('spa.disease', 'like','%'.$name.'%')->paginate(9);
+                ->where('spa.name', 'like','%'.$name.'%')->paginate(9);
             }
         }
         return view('spa', compact('spa'));

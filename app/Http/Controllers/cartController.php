@@ -10,6 +10,7 @@ use App\Docter;
 use Session;
 use Auth;
 use App\Herb;
+use App\Product;
 use App\Spa;
 use App\Order;
 use function Opis\Closure\serialize;
@@ -49,45 +50,26 @@ class cartController extends Controller
         if (!Auth::user()) {
             return redirect('login');
         } else {
-            $oldCart = Session::get('cart');
-            $cart = new Cart($oldCart);
+            $product = Cart::getContent();
             $this->validate($request, [
                 'cart' => 'nullable',
                 'address' => 'required',
+                'name' => 'required',
                 'phone' => 'required',
                 'payment_type' => 'required',
                 'status' => 'nullable',
                 'user_id' => 'nullable',
             ]);
-
-
-            // foreach ($cart as $key => $value) {
-
-            //         // $data = $value[$key]['qry'];
-            //         dd($value[1]);
-
-            // }
-            // $user_id = Auth::user()->id;
-            // Order::create([
-            //     'cart' => serialize($cart),
-            //     'address' => $request['address'],
-            //     'phone' => $request['phone'],
-            //     'payment_id' => $request['payment_type'],
-            //     'status' => 0,
-            //     'user_id' => Auth::user()->id,
-            //     'totalPrice' => $cart->totalPrice,
-            //     'totalOrder' => $cart->totalQty,
-            // ]);
             $order = new Order();
-            $order->cart = serialize($cart);
+            $order->cart = serialize($product);
             $order->address = $request->input('address');
             $order->phone = $request->input('phone');
+            $order->name = $request->input('name');
             $order->payment_id = $request['payment_type'];
             $order->status = 0;
-            // $order->user_id = $user_id;
             Auth::user()->orders()->save($order);
-            Session::forget('cart');
-            return redirect('home')->with('add', 'การสั่งซื้อสำเร็จ');
+            Cart::clear();
+            return view('thank');
         }
     }
 
@@ -184,81 +166,100 @@ class cartController extends Controller
 
         // dump($request->all());
 
-            $type = $request->type;
-            $itemId = $request->id;
+        $type = $request->type;
+        $itemId = $request->id;
 
-            if ($type === 'herb') {
-                // dd("jjj");
-                $itemById = Herb::where('id',$itemId)->first();
-                Cart::add([
-                    'id'=>$itemId,
-                    'name'=>$itemById->name,
-                    'price'=>$itemById->price,
-                    'quantity'=>$request->qry,
-                    'attributes' => array( // attributes field is optional
-                        'image' => $itemById->image,
-                        'date' => '',
-                        'time' => '',
-                        'typeBooking' => ''
-                    )
-                ]);
-            } elseif($type === 'docter') {
-                // dd("jj");
-                $itemByIdDocter = Docter::where('id',$itemId)->first();
-                Cart::add([
-                    'id'=>$itemId,
-                    'name'=>$itemByIdDocter->name,
-                    'price'=>$itemByIdDocter->price,
-                    'quantity'=>$request->qry,
-                    'attributes' => array( // attributes field is optional
-                        'image' => $itemByIdDocter->image,
-                        'date' => $request->date,
-                        'time' => $request->time,
-                        'typeBooking' => $request->typeBook
-                    )
-                ]);
-            } elseif($type === 'spa'){
-                // dd("j");
-                $itemBySpaId = Spa::where('id',$itemId)->first();
-                Cart::add([
-                    'id'=>$itemId,
-                    'name'=>$itemBySpaId->name,
-                    'price'=>$itemBySpaId->price,
-                    'quantity'=>$request->qry,
-                    'attributes' => array( // attributes field is optional
-                        'image' => $itemBySpaId->image,
-                        'date' => $request->date,
-                        'time' => $request->time,
-                        'typeBooking' => $request->typeBook
-                    )
-                ]);
-            }
+        if ($type === 'herb') {
+            // dd("jjj");
+            $itemById = Herb::where('id', $itemId)->first();
+            Cart::add([
+                'id' => $itemId,
+                'name' => $itemById->name,
+                'price' => $itemById->price,
+                'quantity' => $request->qry,
+                'attributes' => array( // attributes field is optional
+                    'image' => $itemById->image,
+                    'date' => '',
+                    'time' => '',
+                    'typeBooking' => ''
+                )
+            ]);
+        } elseif ($type === 'docter') {
+            // dd("jj");
+            $itemByIdDocter = Docter::where('id', $itemId)->first();
+            Cart::add([
+                'id' => $itemId,
+                'name' => $itemByIdDocter->name,
+                'price' => $itemByIdDocter->price,
+                'quantity' => $request->qry,
+                'attributes' => array( // attributes field is optional
+                    'image' => $itemByIdDocter->image,
+                    'date' => $request->date,
+                    'time' => $request->time,
+                    'typeBooking' => $request->typeBook
+                )
+            ]);
+        } elseif ($type === 'spa') {
+            // dd("j");
+            $itemBySpaId = Spa::where('id', $itemId)->first();
+            Cart::add([
+                'id' => $itemId,
+                'name' => $itemBySpaId->name,
+                'price' => $itemBySpaId->price,
+                'quantity' => $request->qry,
+                'attributes' => array( // attributes field is optional
+                    'image' => $itemBySpaId->image,
+                    'date' => $request->date,
+                    'time' => $request->time,
+                    'typeBooking' => $request->typeBook
+                )
+            ]);
+        } elseif ($type === 'product') {
+            // dd("j");
+            $itemByProductId = Product::where('id', $itemId)->first();
+            Cart::add([
+                'id' => $itemId,
+                'name' => $itemByProductId->name,
+                'price' => $itemByProductId->price,
+                'quantity' => $request->qry,
+                'attributes' => array( // attributes field is optional
+                    'image' => $itemByProductId->image,
+                    'date' => $request->date,
+                    'time' => $request->time,
+                    'typeBooking' => $request->typeBook
+                )
+            ]);
+        }
 
-
-
-
-        // dd($request->session()->get('cart'));
         return redirect('/cart-show');
     }
 
     public function cartShow()
     {
         $product = Cart::getContent();
-        dd($product);
-        foreach($product as $condition)
-{
-    // foreach($condition->attributesas as $item)
-    // {
+        // dd($product);
+        // foreach ($product as $item) {
+        //     $item->id; // the Id of the item
+        //     $item->name; // the name
+        //     $item->price; // the single price without conditions applied
+        //     $item->quantity; // the quantity
+        //     $item->attributes; // the attributes
+        //     dump($item->attributes['image']);
+        // }
+        // foreach($product as $condition)
+        // {
+        // foreach($condition->attributesas as $item)
+        // {
 
-    //     dd($item); // the attributes of the condition, returns an empty [] if no attributes added
-    // }
+        //     dd($item); // the attributes of the condition, returns an empty [] if no attributes added
+        // }
 
-    dd($condition); // the attributes of the condition, returns an empty [] if no attributes added
-}
+        // dd($product["attributes"]["items"]["image"]); // the attributes of the condition, returns an empty [] if no attributes added
+        // }
 
 
 
-        // return view('payment', ['product' => $product]);
+        return view('payment', ['product' => $product]);
     }
     public function getCart()
     {
@@ -278,6 +279,7 @@ class cartController extends Controller
             $order->cart = unserialize($order->cart);
             return $order;
         });
+        // dd($orders);
         return view('order', ['orders' => $orders]);
     }
 
@@ -287,6 +289,14 @@ class cartController extends Controller
         $product = session::forget('cart', $id);
         // Cart::remove($id);
         Cart::remove($id);
+        return redirect()->back()->with('msg', "ลบรายสำเร็จ!");
+    }
+    public function deleteCart()
+    {
+        // // dd($rowId);
+        // $product = session::forget('cart', $id);
+        // // Cart::remove($id);
+        Cart::clear();
         return redirect()->back()->with('msg', "ลบรายสำเร็จ!");
     }
 }

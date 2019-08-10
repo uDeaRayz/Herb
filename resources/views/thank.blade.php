@@ -60,35 +60,8 @@
                 <!-- banner -->
                 <div class="main-banner text-center">
                     <div class="container">
-                        <div class="d-flex flex-row-reverse">
-                            <div class="p-2" style="background-color:rgba(197, 220, 192, 0.5) ">
-                                <div class="d-flex flex-row-reverse">
-                                    <div class="p-2">
 
-                                        <div class="row">
-                                            <div class="col-4 text-right"><b>ที่อยู่</b></div>
-                                            <div class="col-8 text-left"> -------------------------</div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-4 text-right"><b>เบอร์ติดต่อ</b></div>
-                                            <div class="col-8 text-left">-------------------------------- </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-4 text-right"><b>อีเมล</b></div>
-                                            <div class="col-8 text-left">--------------------------------</div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-4 text-right"><b>ไลน์</b></div>
-                                            <div class="col-8 text-left"> ---------------------------------</div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                <h1 class="title">ขอบคุณสำหรับคำสั่งซื้อ</h1>
                     </div>
                 </div>
             </div>

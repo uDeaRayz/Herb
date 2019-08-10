@@ -23,18 +23,23 @@
             <a style="font-size: 16pt !important;" href="{{ route('spa') }}">สปา</a>
         </li>
         <li>
+            <a style="font-size: 16pt !important;" href="{{ route('product') }}">ผลิตภัณฑ์สมุนไพร</a>
+        </li>
+        <li>
             <a style="font-size: 16pt !important;" href="{{ route('herb') }}">สมุนไพร</a>
         </li>
         <li>
             <a style="font-size: 16pt !important;" href="{{ route('contact') }}">ติดต่อเรา</a>
         </li>
+        @if (Cart::getTotalQuantity() > 0)
         <li>
-                <a style="font-size: 16pt !important;" href="{{ route('cart') }}">
+                <a style="font-size: 16pt !important;" href="{{ route('cart.show') }}">
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                     ตระกร้าสินค้า
-                    <span class="badge"></span>
+                    <span class="badge">{{ Cart::getTotalQuantity() }}</span>
                 </a>
             </li>
+        @endif
         <li>
             <a style="font-size: 16pt !important;" href="{{ route('login') }}">เข้าสู่ระบบ</a>
         </li>
@@ -54,18 +59,23 @@
             <a style="font-size: 16pt !important;" href="{{ route('spa') }}">สปา</a>
         </li>
         <li>
+                <a style="font-size: 16pt !important;" href="{{ route('product') }}">ผลิตภัณฑ์สมุนไพร</a>
+            </li>
+        <li>
             <a style="font-size: 16pt !important;" href="{{ route('herb') }}">สมุนไพร</a>
         </li>
         <li>
             <a style="font-size: 16pt !important;" href="{{ route('contact') }}">ติดต่อเรา</a>
         </li>
+        @if (Cart::getTotalQuantity() > 0)
         <li>
-            <a style="font-size: 16pt !important;" href="{{ route('cart') }}">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                ตระกร้าสินค้า
-                <span class="badge"></span>
-            </a>
-        </li>
+                <a style="font-size: 16pt !important;" href="{{ route('cart.show') }}">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    ตระกร้าสินค้า
+                    <span class="badge">{{ Cart::getTotalQuantity() }}</span>
+                </a>
+            </li>
+        @endif
         <li class="nav-item dropdown">
             <a style="font-size: 16pt !important;" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

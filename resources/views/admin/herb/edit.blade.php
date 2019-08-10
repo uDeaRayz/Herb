@@ -42,22 +42,6 @@
                     <br>
                     <div class="row">
                         <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">ราคา</p>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="row">
-                                <div class="col-4">
-                                    <input type="text" class="form-control" id="price" name="price" value="{{ $herb->price }}">
-                                </div>
-                                <div class="col-3">
-                                        <p style="color: #111; font-size: 13pt">บาท</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
                             <p style="color: #111; font-size: 13pt">รูปภาพ</p>
                         </div>
                         <div class="col-lg-5">
@@ -65,22 +49,6 @@
                         </div>
                     </div>
                     <br>
-                    <div class="row">
-                            <div class="col-lg-4 text-right">
-                                <p style="color: #111; font-size: 13pt">จำนวน</p>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <input type="text" class="form-control" id="stock" name="stock" value="{{ $herb->stock }}">
-                                    </div>
-                                    <div class="col-3">
-                                            <p style="color: #111; font-size: 13pt">ชิ้น</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <br><br>
                     <div class="text-center">
                             <button type="submit" class="btn btn-success">บันทึก</button>
                             <a href="{{ route('herb-dashboard') }}" type="button" class="btn btn-danger">ยกเลิก</a>

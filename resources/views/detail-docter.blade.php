@@ -103,35 +103,18 @@
                     <div class="hr-line-dashed"></div>
                     <br>
                     <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-3">
 
-                            <div class="d-flex">
-                                <div class="p-2"><b>จองครึ่งวัน</b></div>
-                                <div class="p-2">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio"
-                                            class="custom-control-input"
-                                            id="typeM" name="typeBook"
-                                            value="1">
-                                        <label class="custom-control-label"
-                                            for="morning" style="padding-left: 30px;">ช่วงเช้า</label>
-                                    </div>
-                                </div>
-                                <div class="p-2">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio"
-                                            class="custom-control-input"
-                                            id="typeA" name="typeBook"
-                                            value="2">
-                                        <label class="custom-control-label"
-                                            for="afternoon" style="padding-left: 30px;">
-                                            ช่วงบ่าย</label>
-                                    </div>
+                                <div class="d-flex">
+                                        <select name="typeBook" id="typeBook" class="custom-select">
+                                                <option selected value="null">---จองตามช่วงเวลา---</option>
+                                                <option value="1">ช่วงเช้า</option>
+                                                <option value="2">ช่วงบ่าย</option>
+                                              </select>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <br>
                     <div class="row">
                         <div class="col-12  text-center">
@@ -153,14 +136,14 @@
                 <br>
                 <div class="hr-line-dashed"></div>
                 <br>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-lg-3"><b>สถานะ</b></div>
                     <div class="col-lg">
                         <span style="color: red"> <b>มีการจองแล้ว</b></span>
                     </div>
                 </div>
                 <br>
-                <div class="hr-line-dashed"></div>
+                <div class="hr-line-dashed"></div> --}}
             </div>
         </div>
     </div>

@@ -15,21 +15,21 @@ use App\Herb;
 use App\Spa;
 
 
-Route::get('/', function () {
-        $docter = Docter::inRandomOrder()->get();
-        $herb = Herb::inRandomOrder()->get();
-        $spa = Spa::inRandomOrder()->get();
-            foreach ($spa as $value) {
-            $images = $value->image;
-                if ($images === "") {
-                } else {
-                    $spaImgArray = explode('|', $images);
-                }
-            }
-        return view('welcome',compact('docter','herb','spa','spaImgArray'));
-});
+Route::get('/', 'HomeController@index');
+//         $docter = Docter::inRandomOrder()->get();
+//         $herb = Herb::inRandomOrder()->get();
+//         $spa = Spa::inRandomOrder()->get();
+//             foreach ($spa as $value) {
+//             $images = $value->image;
+//                 if ($images === "") {
+//                 } else {
+//                     $spaImgArray = explode('|', $images);
+//                 }
+//             }
+//         return view('welcome',compact('docter','herb','spa','spaImgArray'));
+// });
 
-Route::get('/cart', 'cartController@index')->name('cart');
+
 
 
 // Route::get('/order', 'cartController@index')->name('order');
@@ -42,28 +42,23 @@ Route::get('/cart', 'cartController@index')->name('cart');
 //     'uses' => 'cartController@getCart',
 //     'as' => 'order'
 // ]);
-// Route::post('/order', [
-//     'uses' => 'cartController@store',
-//     'as' => 'order.payment'
-// ]);
-Route::get('/my-order', [
-    'uses' => 'cartController@getProfileOrder',
-    'as' => 'order.profile'
-]);
+
 // Route::patch('/payment', [
-//     'uses' => 'cartController@update',
-//     'as' => 'update.payment'
-// ]);
+    //     'uses' => 'cartController@update',
+    //     'as' => 'update.payment'
+    // ]);
 
 
-
+    Route::get('/my-order', [
+        'uses' => 'cartController@getProfileOrder',
+        'as' => 'order.profile'
+    ]);
+Route::get('/cart', 'cartController@index')->name('cart');
+Route::post('/cart-store', 'cartController@store')->name('cart.store');
 Route::get('/delete-item-product/{id}', 'cartController@deleteItem')->name('delete.item');
+Route::get('/delete-cart', 'cartController@deleteCart')->name('delete.cart');
 Route::post('/add-item-product', 'cartController@getAddToCart')->name('cart.item');
 Route::get('/cart-show', 'cartController@cartShow')->name('cart.show');
-
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
 
 //Route for normal user
 Route::group(['middleware' => ['auth']], function () {
@@ -99,6 +94,15 @@ Route::group(['prefix' => 'admin'], function(){
         Route::delete('/delete-herb/{id}', 'admin\AdminController@delete_herb')->name('delete-herb');
         Route::get('/view-herb/{id}', 'admin\AdminController@view_herb')->name('view-herb');
         // HERB--------------------------------------
+        // product--------------------------------------
+        Route::get('/product-dashboard', 'admin\AdminController@product')->name('product-dashboard');
+        Route::get('/add-product', 'admin\AdminController@add_product')->name('add-product');
+        Route::post('/add-product-store', 'admin\AdminController@add_product_store')->name('add-product-store');
+        Route::patch('/edit-product-store/{id}', 'admin\AdminController@edit_product_store')->name('edit-product-store');
+        Route::get('/edit-product/{id}', 'admin\AdminController@edit_product')->name('edit-product');
+        Route::delete('/delete-product/{id}', 'admin\AdminController@delete_product')->name('delete-product');
+        Route::get('/view-product/{id}', 'admin\AdminController@view_product')->name('view-product');
+        // product--------------------------------------
         // ORDER ------------------------------------
         Route::get('/order-dashboard', 'admin\AdminController@order')->name('order-dashboard');
         Route::get('/view-order/{id}', 'admin\AdminController@view_order')->name('view-order');
@@ -124,4 +128,7 @@ Route::get('/herb-detail/{id}','herbController@show')->name('herb-detail');
 Route::get('/spa','spaController@index')->name('spa');
 Route::get('/spa-detail/{id}','spaController@show')->name('spa-detail');
 Route::get('/spa-search/{type}/{name}','spaController@search')->name('spa-search');
+Route::get('/product','productController@index')->name('product');
+Route::get('/product-detail/{id}','productController@show')->name('product-detail');
+Route::get('/product-search/{type}/{name}','productController@search')->name('product-search');
 Route::get('/contact','contactController@index')->name('contact');

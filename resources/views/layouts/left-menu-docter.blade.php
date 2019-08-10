@@ -16,15 +16,15 @@
         <li>
             <a href="{{ route('docter-search', ['disease', 'all']) }}" class="pointer">โรคที่ให้การรักษา</a>
             <ul>
-                <li>
-                    <a href="{{ route('docter-search', ['disease', 'แก้พิษงู']) }}" class="pointer">แก้พิษงู</a>
-                </li>
-                <li>
-                    <a href="{{ route('docter-search', ['disease', 'โรคอัมพฤกษ์']) }}" class="pointer">โรคอัมพฤกษ์</a>
-                </li>
-                <li>
-                    <a href="{{ route('docter-search', ['disease', 'โรคมะเร็ง']) }}" class="pointer">โรคมะเร็ง</a>
-                </li>
+                    <li>
+                            <a href="{{ route('docter-search', ['disease', 'พิษงู']) }}" class="pointer">แก้พิษงู</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('docter-search', ['disease', 'อัมพฤกษ์']) }}" class="pointer">โรคอัมพฤกษ์</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('docter-search', ['disease', 'มะเร็ง']) }}" class="pointer">โรคมะเร็ง</a>
+                        </li>
             </ul>
         </li>
     </ul>

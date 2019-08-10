@@ -10,25 +10,37 @@
                 <div class="card">
                     <div class="card-body">
                         <ul class="list-group">
-                            @foreach ($order->cart->items as $item)
+                            @foreach ($order->cart as $item)
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <p style="color: #111"><b>{{ $item['item']->name }}</b> จำนวน {{ $item['qty'] }} ชิ้น</p>
-                                    <span class="badge badge-primary badge-pill">{{ $item['price'] }} ฿</span>
+                                    <p style="color: #111"><b>{{ $item->name }}</b> จำนวน {{ $item->quantity }} ชิ้น</p>
+                                    <span class="badge badge-primary badge-pill">{{ $item->price }} ฿</span>
                                     </li>
                             @endforeach
                         </ul>
                     </div>
                     <div class="card-footer">
                             <div class="d-flex justify-content-between mb-3">
-                                    <div class="p-2"><strong>ราคารวม : {{ $order->cart->totalPrice }}</strong></div>
+                                    <?php
+                                    $subTotal = $order->cart->quantity * $item->price;
+                                    $total = $total + $subTotal;
+                                    if ($total >= 700) {
+                                        $shipping = "ฟรีค่าจัดส่ง";
+                                        $netPrice = $total;
+                                    } else {
+                                        $shipping  = 60;
+                                        $netPrice = $total + 60;
+                                    }
+
+                                ?>
+                                    <div class="p-2"><strong>ราคารวม : {{ $total }}</strong></div>
                                     <div class="p-2">
-                                            @if($order['status'] == 0)
+                                            @if($item->status == 0)
                                             <button type="button" class="btn btn-primary BtnUpdate" id="BtnUpdate" data-id="{{ $order->id }}"  data-toggle="modal" data-target="#myModal">แจ้งการชำระ
                                             </button>
                                             @endif
-                                            @if($order['status'] == 2) <span class="alert alert-warning">เตรียมการจัดส่ง</span> @endif
-                                            @if($order['status'] == 3) <span class="alert alert-success">สินค้าจัดส่งแล้ว</span>@endif
-                                            @if($order['status'] == 1) <span class="alert alert-warning">รอการดำเนินการ</span>@endif
+                                            @if($item->status == 2) <span class="alert alert-warning">เตรียมการจัดส่ง</span> @endif
+                                            @if($item->status == 3) <span class="alert alert-success">สินค้าจัดส่งแล้ว</span>@endif
+                                            @if($item->status == 1) <span class="alert alert-warning">รอการดำเนินการ</span>@endif
 
                                     </div>
                                   </div>

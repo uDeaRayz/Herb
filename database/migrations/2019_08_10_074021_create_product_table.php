@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHerbsTable extends Migration
+class CreateProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateHerbsTable extends Migration
      */
     public function up()
     {
-        Schema::create('herbs', function (Blueprint $table) {
+        Schema::create('product', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->char('name', 100);
+            $table->char('type', 100);
             $table->longText('detail')->nullable();
-            $table->longText('drugDetail')->nullable();
             $table->string('image')->nullable();
-            $table->timestampsTz();
+            $table->integer('price');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +31,6 @@ class CreateHerbsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('herbs');
+        Schema::dropIfExists('product');
     }
 }

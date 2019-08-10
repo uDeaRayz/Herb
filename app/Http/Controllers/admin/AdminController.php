@@ -8,6 +8,7 @@ use App\Herb;
 use DB;
 use App\Spa;
 use App\Docter;
+use App\Product;
 use Validator;
 
 class AdminController extends Controller
@@ -16,6 +17,126 @@ class AdminController extends Controller
     {
         return view('admin/dashboard');
     }
+
+    // Product---------------------------------
+    public function Product()
+    {
+        $product = DB::table('product')
+        ->orderBy('product.id', 'asc')
+        ->paginate(10);
+        return view('admin.product.product',compact('product'));
+    }
+    public function add_product()
+    {
+        return view('admin.product.add');
+    }
+    public function add_product_store(Request $request)
+    {
+        // dd($request->all());
+
+        $this->validate($request,[
+            'name' => 'required',
+            'price' => 'required',
+            'type' => 'required',
+            'detail' => 'nullable',
+            'image' => 'nullable',
+        ]);
+
+        $images=array();
+        if (!$request->image == null) {
+            if ($files = $request->file('image')) {
+                foreach ($files as $file) {
+                    $name = $file->getClientOriginalName();
+                    $file->move('image', $name);
+                    $images[] = $name;
+                }
+            }
+            // $path = $request->file('image')->store('public/image');
+            // $sub = str_replace("public","storage" , $path);
+
+            Product::create([
+                'name' => $request['name'],
+                'price' => $request['price'],
+                'type' => $request['type'],
+                'detail' => $request['detail'],
+                'image' => implode("|",$images),
+            ]);
+        }else {
+            Product::create([
+                'name' => $request['name'],
+                'price' => $request['price'],
+                'type' => $request['type'],
+                'detail' => $request['detail'],
+            ]);
+        }
+
+        return redirect('admin/product-dashboard')->with('add','เพิ่มข้อมูลผลิตภัณฑ์สมุนไพรสำเร็จ');
+    }
+    public function edit_product($id)
+    {
+        $product = DB::table('product')
+        ->where('product.id','=', $id)->first();
+        return view('admin.product.edit' ,compact('product'));
+    }
+    public function edit_product_store(Request $request , $id)
+    {
+        $this->validate($request,[
+            'name' => 'required',
+            'price' => 'required',
+            'type' => 'required',
+            'detail' => 'nullable',
+            'image' => 'nullable',
+        ]);
+
+        if (!$request->image == null) {
+            if ($files = $request->file('image')) {
+                foreach ($files as $file) {
+                    $name = $file->getClientOriginalName();
+                    $file->move('image', $name);
+                    $images[] = $name;
+                }
+            }
+
+            DB::table('product')
+            ->where('product.id', $id)
+            ->update([
+                'name' => $request['name'],
+                'price' => $request['price'],
+                'type' => $request['type'],
+                'detail' => $request['detail'],
+                'image' => implode("|",$images),
+            ]);
+        }else {
+            DB::table('product')
+            ->where('product.id', $id)
+            ->update([
+                'name' => $request['name'],
+                'price' => $request['price'],
+                'type' => $request['type'],
+                'detail' => $request['detail'],
+            ]);
+        }
+
+        return redirect('admin/product-dashboard')->with('update','แก้ไขข้อมูลผลิตภัณฑ์สมุนไพรสำเร็จ');
+    }
+    public function view_product($id)
+    {
+        $product = DB::table('product')
+        ->where('product.id', '=', $id)->first();
+        $images = DB::table('product')
+        ->select('image')
+        ->where('product.id', '=', $id)->first();
+        foreach ($images as $fileString) {
+            $imagesArray = explode('|', $fileString);
+        }
+        return view('admin.product.view' ,compact('product', 'imagesArray'));
+    }
+    public function delete_product($id)
+    {
+        DB::table('product')->where('id', $id)->delete();
+        return redirect('admin/product-dashboard')->with('del', 'ลบข้อมูลผลิตภัณฑ์สมุนไพรเรียบร้อย');
+    }
+    // product---------------------------------
 
     // DOCTER---------------------------------
     public function docter()
@@ -122,8 +243,6 @@ class AdminController extends Controller
                     $images[] = $name;
                 }
             }
-            // $path = $request->file('image')->store('public/image');
-            // $sub = str_replace("public", "storage", $path);
 
             DB::table('docter')
             ->where('docter.id', $id)
@@ -139,7 +258,7 @@ class AdminController extends Controller
                 'price' => $request['price'],
                 'worktime_start' => $request['worktime_start'],
                 'worktime_stop' => $request['worktime_stop'],
-                'image' => $sub,
+                'image' => implode("|",$images),
             ]);
         }else {
             DB::table('docter')
@@ -169,11 +288,8 @@ class AdminController extends Controller
         ->select('image')
         ->where('docter.id', '=', $id)->first();
         foreach ($images as $fileString) {
-            // now we have one single file record
             $imagesArray = explode('|', $fileString);
         }
-        // dump($imagesArray);
-
         return view('admin.docter.view' ,compact('docter', 'imagesArray'));
     }
     public function delete_docter($id)
@@ -197,15 +313,13 @@ class AdminController extends Controller
     }
     public function add_spa_store(Request $request)
     {
-        dump($request);
+        // dump($request);
         $this->validate($request, [
             'name' => 'required',
             'address' => 'required',
             'district' => 'required',
             'province' => 'required',
-            'zipcode' => 'required',
             'detail' => 'nullable',
-            'phone' => 'nullable|min:9|max:10',
             'price' => 'required',
             'worktime_start' => 'nullable',
             'worktime_stop' => 'nullable',
@@ -226,13 +340,11 @@ class AdminController extends Controller
                 'address' => $request['address'],
                 'district' => $request['district'],
                 'province' => $request['province'],
-                'zipcode' => $request['zipcode'],
                 'detail' => $request['detail'],
-                'phone' => $request['phone'],
                 'price' => $request['price'],
                 'worktime_start' => $request['worktime_start'],
                 'worktime_stop' => $request['worktime_stop'],
-                'image' => $sub,
+                'image' => implode("|",$images),
             ]);
         }else {
             Spa::create([
@@ -240,9 +352,7 @@ class AdminController extends Controller
                 'address' => $request['address'],
                 'district' => $request['district'],
                 'province' => $request['province'],
-                'zipcode' => $request['zipcode'],
                 'detail' => $request['detail'],
-                'phone' => $request['phone'],
                 'price' => $request['price'],
                 'worktime_start' => $request['worktime_start'],
                 'worktime_stop' => $request['worktime_stop'],
@@ -271,9 +381,7 @@ class AdminController extends Controller
             'address' => 'required',
             'district' => 'required',
             'province' => 'required',
-            'zipcode' => 'required',
             'detail' => 'nullable',
-            'phone' => 'nullable|min:9|max:10',
             'price' => 'required',
             'worktime_start' => 'nullable',
             'worktime_stop' => 'nullable',
@@ -294,13 +402,11 @@ class AdminController extends Controller
                 'address' => $request['address'],
                 'district' => $request['district'],
                 'province' => $request['province'],
-                'zipcode' => $request['zipcode'],
                 'detail' => $request['detail'],
-                'phone' => $request['phone'],
                 'price' => $request['price'],
                 'worktime_start' => $request['worktime_start'],
                 'worktime_stop' => $request['worktime_stop'],
-                'image' => $sub,
+                'image' => implode("|",$images),
             ]);
         }else {
             DB::table('spa')
@@ -310,9 +416,7 @@ class AdminController extends Controller
                 'address' => $request['address'],
                 'district' => $request['district'],
                 'province' => $request['province'],
-                'zipcode' => $request['zipcode'],
                 'detail' => $request['detail'],
-                'phone' => $request['phone'],
                 'price' => $request['price'],
                 'worktime_start' => $request['worktime_start'],
                 'worktime_stop' => $request['worktime_stop'],
@@ -361,8 +465,6 @@ class AdminController extends Controller
             'name' => 'required',
             'detail' => 'nullable',
             'drugDetail' => 'nullable',
-            'price' => 'required',
-            'stock' => 'required',
             'image' => 'nullable',
         ]);
 
@@ -379,17 +481,13 @@ class AdminController extends Controller
                 'name' => $request['name'],
                 'detail' => $request['detail'],
                 'drugDetail' => $request['drugDetail'],
-                'price' => $request['price'],
-                'stock' => $request['stock'],
-                'image' => $sub,
+                'image' => implode("|",$images),
             ]);
         }else {
             $herb =  Herb::create([
                 'name' => $request['name'],
                 'detail' => $request['detail'],
                 'drugDetail' => $request['drugDetail'],
-                'price' => $request['price'],
-                'stock' => $request['stock'],
             ]);
         }
 
@@ -401,8 +499,6 @@ class AdminController extends Controller
             'name' => 'required',
             'detail' => 'nullable',
             'drugDetail' => 'nullable',
-            'price' => 'required',
-            'stock' => 'required',
             'image' => 'nullable',
         ]);
 
@@ -420,8 +516,6 @@ class AdminController extends Controller
                     'name' => $request['name'],
                     'detail' => $request['detail'],
                     'drugDetail' => $request['drugDetail'],
-                    'price' => $request['price'],
-                    'stock' => $request['stock'],
                     'image' => implode("|", $images),
                 ]);
         } else {
@@ -431,8 +525,6 @@ class AdminController extends Controller
                     'name' => $request['name'],
                     'detail' => $request['detail'],
                     'drugDetail' => $request['drugDetail'],
-                    'price' => $request['price'],
-                    'stock' => $request['stock'],
                 ]);
         }
 

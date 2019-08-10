@@ -40,7 +40,7 @@
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->address }}</td>
+                        <td>{{ $item->address }} อ.{{ $item->district }} จ.{{ $item->province }}</td>
                         <td class="text-center">
                            <a href="{{ route('view-spa', $item->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="ดูข้อมูล"><i class="fa fa-eye"></i></a>
                            <a href="{{ route('edit-spa', $item->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" title="แก้ไขข้อมูล"><i class="fas fa-pen"></i></a>

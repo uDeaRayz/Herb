@@ -27,8 +27,16 @@
                                     }}" alt="Card image" style="width:100%; height: 240px;" />
                             <div class="card-body text-center">
                                 <a href="{{ route('docter-detail',
-                                        $docters->id) }}" style="font-size:
-                                        15pt; color: #111; font-weight:bold" class="card-title">{{ $docters->name }}</a>
+                                        $docters->id) }}" style="color: #111; font-weight:bold; display: -webkit-box;
+                                        max-width: 400px;
+                                        height: 24px;
+                                        -webkit-line-clamp: 3;
+                                        -webkit-box-orient: vertical;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        line-height: 1.625;
+                                        text-align: center;
+                                        font-size: 13pt;" class="card-title">{{ $docters->name }}</a>
                             </div>
                         </div>
                     </div>

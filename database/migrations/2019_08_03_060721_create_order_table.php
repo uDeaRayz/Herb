@@ -20,9 +20,12 @@ class CreateOrderTable extends Migration
             $table->unsignedInteger('herb_id')->nullable();
             $table->unsignedInteger('docter_id')->nullable();
             $table->unsignedInteger('payment_id');
+            $table->char('name', 100);
             $table->longText('address');
-            $table->longText('cart');
             $table->char('phone', 10);
+            $table->date('date')->nullable();
+            $table->time('time')->nullable();
+            $table->char('typeBooking')->nullable();
             $table->integer('status');  // 0 รอโอน // 1โอน // 2 รอจัดส่ง // 3 จัดส่ง
             $table->string('image')->nullable(); //หลักฐานการโอนเงิน
             $table->timestamps();

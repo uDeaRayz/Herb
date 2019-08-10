@@ -35,7 +35,6 @@
                             <div class="col-lg-7">{{ $spa->address }} <br>
                                 <b>อำเภอ</b> {{ $spa->district }} <br>
                                 <b>จังหวัด</b> {{ $spa->province }} <br>
-                                <b>รหัสไปรษณีย์</b> {{ $spa->zipcode }}
                             </div>
                         </div>
                         <br>
@@ -94,11 +93,11 @@
                     <br>
                     <div class="row">
                         <div class="col-lg-3"></div>
-                        <div class="col-lg-9">
+                        <div class="col-lg-3">
 
                             <div class="d-flex">
                                     <select name="typeBook" id="typeBook" class="custom-select">
-                                            <option selected>---จองตามช่วงเวลา---</option>
+                                            <option selected value="null">---จองตามช่วงเวลา---</option>
                                             <option value="1">ช่วงเช้า</option>
                                             <option value="2">ช่วงบ่าย</option>
                                           </select>
@@ -124,14 +123,14 @@
                 <br>
                 <div class="hr-line-dashed"></div>
                 <br>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-3"><b>สถานะ</b></div>
                     <div class="col-9">
                         <span style="color: red"> <b>มีการจองแล้ว</b></span>
                     </div>
                 </div>
                 <br>
-                <div class="hr-line-dashed"></div>
+                <div class="hr-line-dashed"></div> --}}
             </div>
         </div>
     </div>

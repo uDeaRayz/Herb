@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Docter;
+use App\Product;
 use App\Herb;
 use App\Spa;
 
@@ -29,6 +30,7 @@ class HomeController extends Controller
     {
         $docter = Docter::inRandomOrder()->get();
         $herb = Herb::inRandomOrder()->get();
+        $product = product::inRandomOrder()->get();
         $spa = Spa::inRandomOrder()->get();
             foreach ($spa as $value) {
             $images = $value->image;
@@ -37,7 +39,7 @@ class HomeController extends Controller
                     $spaImgArray = explode('|', $images);
                 }
             }
-        return view('welcome',compact('docter','herb','spa','spaImgArray'));
+        return view('welcome',compact('docter','herb','spa','product','spaImgArray'));
 
     }
 }

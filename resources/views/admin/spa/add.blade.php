@@ -54,26 +54,6 @@
                     <br>
                     <div class="row">
                         <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">รหัสไปรษณีย์<span style="color: red;">*</span></p>
-                        </div>
-                        <div class="col-lg-5">
-                            <input required pattern="[0-9]{5}" type="text" class="form-control" id="zipcode"
-                                name="zipcode">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
-                            <p style="color: #111; font-size: 13pt">เบอร์ติดต่อ</p>
-                        </div>
-                        <div class="col-lg-5">
-                            <input pattern="{0-9}" type="text" class="form-control" id="phone"
-                                name="phone" min="9" max="10" maxlength="10">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
                             <p style="color: #111; font-size: 13pt">ข้อมูลการบริการ</p>
                         </div>
                         <div class="col-lg-5">
@@ -88,7 +68,7 @@
                         </div>
                         <div class="col-lg-5">
                             <input type="file" class="form-control-file border"
-                                id="image" name="image" multiple>
+                                id="image[]" name="image[]" multiple>
                         </div>
                     </div>
                     <br>

@@ -46,19 +46,8 @@
                             <p class="detail-title">ที่อยู่</p>
                         </div>
                         <div class="col-lg-5">
-                                <label for=""> {{ $spa->address }} &nbsp;&nbsp; {{ $spa->district }}
-                                    &nbsp;&nbsp; {{ $spa->province }} &nbsp;&nbsp; {{ $spa->zipcode }} </label>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="hr-line-dashed"></div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-4 text-right">
-                            <p class="detail-title">เบอร์ติดต่อ</p>
-                        </div>
-                        <div class="col-lg-5">
-                                <label for=""> {{ $spa->phone }}</label>
+                                <label for=""> {{ $spa->address }} &nbsp;&nbsp; อ.{{ $spa->district }}
+                                    &nbsp;&nbsp; จ.{{ $spa->province }}</label>
                         </div>
                     </div>
                     <br>

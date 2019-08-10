@@ -98,6 +98,9 @@
                         <a href="{{ route('spa-dashboard') }}">สปา</a>
                     </li>
                     <li>
+                        <a href="{{ route('product-dashboard') }}">ผลิตภัณฑ์สมุนไพร</a>
+                    </li>
+                    <li>
                         <a href="{{ route('herb-dashboard') }}">สมุนไพร</a>
                     </li>
                     <li>

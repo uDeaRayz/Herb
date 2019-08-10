@@ -16,7 +16,7 @@
                                     <p class="detail-title">รูปภาพ</p>
                                 </div>
                                 <div class="col-lg-5">
-                                        @if (!$herb->image == null)
+                                        @if (!$product->image == null)
                                         <img src="{{ asset('image/'.$imagesArray[0]) }}"style="height:250px; width:300px;">
                                         @else
                                         <img src="{{ URL::asset('images/no_image.png') }}"style="height:250px; width:300px;">
@@ -28,10 +28,10 @@
                             <br>
                     <div class="row">
                         <div class="col-lg-4 text-right">
-                            <p class="detail-title">ชื่อสมุนไพร</p>
+                            <p class="detail-title">ชื่อผลิตภัณฑ์สมุนไพร</p>
                         </div>
                         <div class="col-lg-5">
-                                <label for="">{{ $herb->name }}</label>
+                                <label for="">{{ $product->name }}</label>
                         </div>
                     </div>
                     <br>
@@ -42,7 +42,7 @@
                             <p class="detail-title">สรรพคุณ</p>
                         </div>
                         <div class="col-lg-5">
-                                <label for="">{{ $herb->detail }}</label>
+                                <label for="">{{ $product->detail }}</label>
                         </div>
                     </div>
                     <br>
@@ -50,17 +50,43 @@
                     <br>
                     <div class="row">
                         <div class="col-lg-4 text-right">
-                            <p class="detail-title">ส่วนประกอบของตัวยา</p>
+                            <p class="detail-title">ประเภทยา</p>
                         </div>
                         <div class="col-lg-5">
-                                <label for="">{{ $herb->drugDetail }}</label>
+                                @if( $product->type === '1')
+                                <label for="">ยาชุด</label>
+                                @endif
+                                @if( $product->type === '2')
+                                <label for="">ยาสำหรับใช้ภายนอก</label>
+                                @endif
+                                @if( $product->type === '3')
+                                <label for="">ยาสำหรับใช้ภายใน</label>
+                                @endif
+                        </div>
+                    </div>
+                    <br>
+                    <div class="hr-line-dashed"></div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-4 text-right">
+                            <p class="detail-title">ราคา</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="row">
+                                <div class="col-4">
+                                        <label for="">{{ $product->price }}</label>
+                                </div>
+                                <div class="col-3">
+                                        <p class="detail-title">บาท</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <br>
                     <div class="hr-line-dashed"></div>
                     <br>
                     <div class="text-center">
-                            <a href="{{ route('herb-dashboard') }}" type="button" class="btn btn-warning">ย้อนกลับ</a>
+                            <a href="{{ route('product-dashboard') }}" type="button" class="btn btn-warning">ย้อนกลับ</a>
                     </div>
                 </form>
             </div>

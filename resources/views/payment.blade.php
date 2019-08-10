@@ -3,12 +3,18 @@
 @section('content')
 @if (Cart::getTotalQuantity() > 0)
 <section style="margin-top: 45px">
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="{{ route('cart.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container">
             <div class="card">
                 <div class="card-header">ที่อยู่ในการจัดส่ง</div>
                 <div class="card-body">
+
+                    <div class="form-group">
+                        <label for="address">ชื่อผู้สั่งซื้อ <span style="color: red">*</span></label>
+                        <input required type="text" class="form-control" id="name"
+                                    name="name" value="">
+                    </div>
                     <div class="form-group">
                         <label for="address">ที่อยู่ <span style="color: red">*</span></label>
                         <textarea required rows="3" type="text" class="form-control" id="address" name="address"> </textarea>
@@ -37,21 +43,8 @@
                         <div class="card-header">รถเข็นของคุณมีสินค้าทั้งหมด {{ Cart::getTotalQuantity() }} รายการ</div>
                         <?php $total = 0; ?>
                         @foreach ($product as $item)
-                        @foreach ($item as $items)
-                        {{-- {{dd( $item->attributes->image)}} --}}
-                        <?php
-                        dump($items );
-                        // dump($items['items'] );
-                            // $img = $items->image;
-                         ?>
-
-                        @endforeach
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-lg-3 text-center">
-                                    {{-- <img class="card-img-top" src="{{'image/spa/'.$ImgArray}}" style="height: 15vh;
-                                        width: 15vh;" /> --}}
-                                </div>
                                 <div class="col-lg">
                                     <div class="row">
                                         <div class="col-lg">
@@ -81,6 +74,14 @@
                                     <?php
                                         $subTotal = $item->quantity * $item->price;
                                         $total = $total + $subTotal;
+                                        if ($total >= 700) {
+                                            $shipping = "ฟรีค่าจัดส่ง";
+                                            $netPrice = $total;
+                                        } else {
+                                            $shipping  = 60;
+                                            $netPrice = $total + 60;
+                                        }
+
                                     ?>
                                     <div class="row">
                                         <div class="col-lg">
@@ -92,27 +93,6 @@
                                         <a href="{{ route('delete.item', $item->id)}}" class="btn
                                                     btn-outline-danger">ยกเลิก</a>
                                     </div>
-                                    <div class="row">
-                                            <div class="col-lg">
-                                                <p style="color: #111;">วันที่
-                                                    <span style="color: #111;">{{ $item->date }}</span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    <div class="row">
-                                            <div class="col-lg">
-                                                <p style="color: #111;">เวลา
-                                                    <span style="color: #111;">{{ $item->time }}</span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    <div class="row">
-                                            <div class="col-lg">
-                                                <p style="color: #111;">ประเภท
-                                                    <span style="color: #111;">{{ $item->type }}</span>
-                                                </p>
-                                            </div>
-                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -127,8 +107,18 @@
                     <div class="hr-line-dashed"></div>
                     <br><br><br>
                     <div class="row" style="color: #fff">
-                        <div class="col-3">ยอดรวม</div>
-                        <div class="col text-right"> <p style="font-size: 18pt"><span class="text-warning">{{$total}} </span> บาท</p>
+                        <div class="col-4">ยอดรวม</div>
+                        <div class="col text-right"> <p style="font-size: 15pt"><span class="text-warning">{{$total}} </span> บาท</p>
+                            </div>
+                    </div>
+                    <div class="row" style="color: #fff">
+                        <div class="col-4">ค่าจัดส่ง</div>
+                        <div class="col text-right"> <p style="font-size: 15pt"><span class="text-warning">{{$shipping}} </span> บาท</p>
+                            </div>
+                    </div>
+                    <div class="row" style="color: #fff">
+                        <div class="col-4">ยอดรวมทั้งหมด</div>
+                        <div class="col text-right"> <p style="font-size: 15pt"><span class="text-warning">{{ $netPrice }} </span> บาท</p>
                             </div>
                     </div>
                     <br><br>
@@ -168,7 +158,7 @@
                     <br>
                     <button type="submit" class="btn btn-block
                                         btn-success">สั่งซื้อ</button>
-                    <a href="{{ route('home') }}" type="button" class="btn btn-block btn-danger">ยกเลิก</a>
+                    <a href="{{ route('delete.cart') }}" type="button" class="btn btn-block btn-danger">ยกเลิก</a>
                     <br><br>
                 </div>
             </div>

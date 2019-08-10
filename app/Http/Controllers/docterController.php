@@ -99,6 +99,7 @@ class docterController extends Controller
 
     public function search($type, $name)
     {
+        // dd($name);
         if ($type === 'province') {
             if ($name === 'all') {
                 $docter = DB::table('docter')->paginate(12);

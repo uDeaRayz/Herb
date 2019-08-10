@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Herb extends Model
+class Product extends Model
 {
-    protected $table = 'herbs';
+    protected $table = 'product';
     public $timestamps = true;
     protected $primaryKey = 'id';
-    protected $fillable = ['name','detail','image','drugDetail'];
+    protected $fillable = ['name','detail','image','price','type'];
 }
