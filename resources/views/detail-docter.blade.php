@@ -108,7 +108,7 @@
 
                                 <div class="d-flex">
                                         <select name="typeBook" id="typeBook" class="custom-select">
-                                                <option selected value="null">---จองตามช่วงเวลา---</option>
+                                                <option selected value="null">จองตามช่วงเวลา</option>
                                                 <option value="1">ช่วงเช้า</option>
                                                 <option value="2">ช่วงบ่าย</option>
                                               </select>

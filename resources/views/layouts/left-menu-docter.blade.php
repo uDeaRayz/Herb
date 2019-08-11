@@ -25,6 +25,12 @@
                         <li>
                             <a href="{{ route('docter-search', ['disease', 'มะเร็ง']) }}" class="pointer">โรคมะเร็ง</a>
                         </li>
+                        <li>
+                            <a href="{{ route('docter-search', ['disease', 'งูสวัด']) }}" class="pointer">โรคงูสวัด</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('docter-search', ['disease', 'กระดูก']) }}" class="pointer">โรคกระดูก</a>
+                        </li>
             </ul>
         </li>
     </ul>

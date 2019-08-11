@@ -8,7 +8,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'HuaMhor') }}</title>
+        <title>หาหมอพื้นบ้าน</title>
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
@@ -60,35 +60,24 @@
                 <!-- banner -->
                 <div class="main-banner text-center">
                     <div class="container">
-                        <div class="d-flex flex-row-reverse">
-                            <div class="p-2" style="background-color:rgba(197, 220, 192, 0.5) ">
-                                <div class="d-flex flex-row-reverse">
-                                    <div class="p-2">
-
-                                        <div class="row">
-                                            <div class="col-4 text-right"><b>ที่อยู่</b></div>
-                                            <div class="col-8 text-left"> -------------------------</div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-4 text-right"><b>เบอร์ติดต่อ</b></div>
-                                            <div class="col-8 text-left">-------------------------------- </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-4 text-right"><b>อีเมล</b></div>
-                                            <div class="col-8 text-left">--------------------------------</div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-4 text-right"><b>ไลน์</b></div>
-                                            <div class="col-8 text-left"> ---------------------------------</div>
-                                        </div>
-
+                            <div class="card" style="background-color:rgba(197, 220, 192, 0.5) ">
+                                    <div class="card-body">
+                                            <div class="row">
+                                                    <div class="col-5 text-right"><b>เบอร์ติดต่อ :</b></div>
+                                                    <div class="col-7 text-left"> 084-2799154 </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-5 text-right"><b>อีเมล :</b></div>
+                                                    <div class="col-7 text-left"> hamhorpuenban12@gmail.com </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-5 text-right"><b>Fanpage :</b></div>
+                                                    <div class="col-7 text-left"> หาหมอพื้นบ้าน </div>
+                                                </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                                  </div>
                     </div>
                 </div>
             </div>
