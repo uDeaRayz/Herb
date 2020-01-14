@@ -10,7 +10,7 @@ use App\Spa;
 use App\Docter;
 use App\Product;
 use Validator;
-
+// test
 class AdminController extends Controller
 {
     public function index()
