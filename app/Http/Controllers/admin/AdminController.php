@@ -11,6 +11,7 @@ use App\Docter;
 use App\Product;
 use Validator;
 // test
+// test 1
 class AdminController extends Controller
 {
     public function index()
